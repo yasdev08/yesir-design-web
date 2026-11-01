@@ -1,0 +1,357 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   YESIR DESIGN — Design system
+   Deep navy surfaces, electric blue signal, editorial typography.
+   ========================================================================== */
+
+@theme {
+  /* ---- Colour tokens ---------------------------------------------------- */
+  --color-ink-950: #04060c; /* page background */
+  --color-ink-900: #080c17; /* raised surface */
+  --color-ink-850: #0c1222;
+  --color-ink-800: #111a2f; /* cards, inputs */
+  --color-ink-700: #1a2540; /* hairlines on raised surfaces */
+  --color-line: #18223a; /* default hairline */
+  --color-line-strong: #26334f;
+
+  --color-signal: #2f6bff; /* electric blue — primary accent */
+  --color-signal-strong: #1f56f0; /* hover / pressed */
+  --color-signal-soft: #8fb0ff; /* refined blue for text on dark */
+  --color-signal-glow: #5b8cff;
+  --color-cyan: #6fd3ff; /* rare highlight — LED tone */
+
+  --color-fg: #f2f5fa; /* primary text */
+  --color-fg-muted: #a3aec4; /* secondary text */
+  --color-fg-subtle: #6d7a94; /* tertiary text, captions */
+
+  --color-paper: #eef1f6; /* light editorial sections */
+  --color-paper-line: #d5dbe6;
+  --color-ink-text: #0a0f1c;
+  --color-ink-text-muted: #4a556d;
+
+  --color-success: #3ccf91;
+  --color-warning: #f2b544;
+  --color-danger: #ff6b6b;
+
+  /* ---- Typography -------------------------------------------------------- */
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* Fluid type scale */
+  --text-display-xl: clamp(3.1rem, 10.5vw, 9.5rem);
+  --text-display-xl--line-height: 0.9;
+  --text-display-xl--letter-spacing: -0.045em;
+  --text-display: clamp(2.6rem, 7vw, 6rem);
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -0.04em;
+  --text-h1: clamp(2.3rem, 5.2vw, 4.5rem);
+  --text-h1--line-height: 1;
+  --text-h1--letter-spacing: -0.035em;
+  --text-h2: clamp(1.9rem, 3.8vw, 3.25rem);
+  --text-h2--line-height: 1.05;
+  --text-h2--letter-spacing: -0.03em;
+  --text-h3: clamp(1.35rem, 2.1vw, 1.75rem);
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.02em;
+  --text-lead: clamp(1.075rem, 1.4vw, 1.3rem);
+  --text-lead--line-height: 1.6;
+  --text-eyebrow: 0.72rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.16em;
+
+  /* ---- Spacing / layout -------------------------------------------------- */
+  --spacing-section: clamp(5rem, 11vw, 9.5rem);
+  --spacing-section-sm: clamp(3.5rem, 7vw, 6rem);
+  --spacing-gutter: clamp(1rem, 4vw, 2.5rem);
+  --container-site: 88rem;
+  --container-prose: 44rem;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+
+  /* ---- Motion ------------------------------------------------------------ */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --animate-pixel: pixel 4.8s steps(1) infinite;
+  --animate-power-on: power-on 2.6s var(--ease-out-expo) 0.4s both;
+  --animate-scan: scan 7s linear infinite;
+  --animate-page-in: page-in 0.6s var(--ease-out-expo) both;
+
+  @keyframes pixel {
+    0%, 100% { opacity: 0.15; }
+    30% { opacity: 1; }
+    60% { opacity: 0.45; }
+  }
+  @keyframes power-on {
+    0% { opacity: 0; filter: brightness(0.3); }
+    18% { opacity: 1; filter: brightness(1.6); }
+    24% { opacity: 0.35; }
+    32% { opacity: 1; filter: brightness(1.1); }
+    100% { opacity: 1; filter: brightness(1); }
+  }
+  @keyframes scan {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(100%); }
+  }
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes page-in {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+/* Arabic: swap fonts and neutralise Latin-only tracking & italics. */
+:root:lang(ar) {
+  --font-sans: var(--font-plex-arabic), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-plex-arabic), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-plex-arabic), ui-sans-serif, system-ui, sans-serif;
+  --text-display-xl--letter-spacing: 0;
+  --text-display--letter-spacing: 0;
+  --text-h1--letter-spacing: 0;
+  --text-h2--letter-spacing: 0;
+  --text-h3--letter-spacing: 0;
+  --text-eyebrow--letter-spacing: 0;
+  --text-display-xl--line-height: 1.15;
+  --text-display--line-height: 1.2;
+  --text-h1--line-height: 1.25;
+  --text-h2--line-height: 1.3;
+  --text-lead--line-height: 1.85;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    background-color: var(--color-ink-950);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+  :lang(ar) body {
+    font-feature-settings: normal;
+    line-height: 1.75;
+  }
+  ::selection {
+    background: var(--color-signal);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-signal-glow);
+    outline-offset: 3px;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :lang(ar) em.accent,
+  :lang(ar) .font-serif {
+    font-style: normal;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  /* Editorial accent word: serif italic in Latin scripts, brand blue in Arabic. */
+  .accent {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  :lang(ar) .accent {
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  /* Blueprint grid backdrop */
+  .bg-blueprint {
+    background-image:
+      linear-gradient(to right, rgb(143 176 255 / 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(143 176 255 / 0.055) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .bg-blueprint-fade {
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 85%);
+  }
+
+  /* Animated underline for text links */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.45s var(--ease-out-expo);
+  }
+  :dir(rtl) .link-underline {
+    background-position: 100% 100%;
+  }
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  /* Scroll reveal — pure CSS scroll-driven animation, zero JavaScript.
+     Browsers without support simply show the content. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      [data-reveal] {
+        animation: reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 55%;
+      }
+    }
+  }
+
+  /* Native <details> accordion */
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  /* Form controls */
+  .field-control {
+    width: 100%;
+    background: var(--color-ink-900);
+    border: 1px solid var(--color-line-strong);
+    border-radius: var(--radius-xs);
+    color: var(--color-fg);
+    padding: 0.85rem 1rem;
+    font-size: 1rem; /* 16px: avoids iOS zoom */
+    line-height: 1.5;
+    transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+  }
+  .field-control::placeholder {
+    color: var(--color-fg-subtle);
+  }
+  .field-control:hover {
+    border-color: #34446a;
+  }
+  .field-control:focus {
+    outline: none;
+    border-color: var(--color-signal);
+    background: var(--color-ink-850);
+    box-shadow: 0 0 0 3px rgb(47 107 255 / 0.18);
+  }
+  .field-control[aria-invalid="true"] {
+    border-color: var(--color-danger);
+  }
+  select.field-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23a3aec4' stroke-width='1.5'%3E%3Cpath d='m1 1.5 5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-inline-end: 2.5rem;
+  }
+  :dir(rtl) select.field-control {
+    background-position: left 1rem center;
+  }
+}
+
+@utility container-site {
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+/* ---- Page transitions (React <ViewTransition>) ------------------------- */
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-old(.page) {
+  animation: 180ms ease-in both vt-fade-out;
+}
+::view-transition-new(.page) {
+  animation: 520ms var(--ease-out-expo) 120ms both vt-rise-in;
+}
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+::view-transition-group(.morph) {
+  animation-duration: 560ms;
+  animation-timing-function: var(--ease-out-expo);
+}
+@keyframes vt-fade-out {
+  to { opacity: 0; }
+}
+@keyframes vt-rise-in {
+  from { opacity: 0; translate: 0 16px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/* ---- Header: background solidifies on scroll (CSS scroll-driven, no JS) */
+.header-bg {
+  background: rgb(4 6 12 / 0.86);
+  backdrop-filter: blur(14px);
+  border-color: var(--color-line);
+}
+@supports (animation-timeline: scroll()) {
+  .header-bg {
+    animation: header-solid linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 140px;
+  }
+}
+@keyframes header-solid {
+  from { background: rgb(4 6 12 / 0); backdrop-filter: blur(0); border-color: transparent; }
+  to { background: rgb(4 6 12 / 0.86); backdrop-filter: blur(14px); border-color: var(--color-line); }
+}
+
+/* ---- Mobile menu (<dialog>) */
+.mobile-menu[open] {
+  animation: menu-in 0.45s var(--ease-out-expo) both;
+}
+.mobile-menu[open] .mobile-menu-item {
+  animation: menu-item-in 0.6s var(--ease-out-expo) both;
+}
+@keyframes menu-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes menu-item-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}

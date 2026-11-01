@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { locales } from "@/i18n/config";
+import { BRAND_BLUE, MARK, markPoints } from "@/components/visuals/Logo";
 
 export const alt = "YESIR DESIGN — Agence créative et digitale en Algérie";
 export const size = { width: 1200, height: 630 };
@@ -18,20 +19,19 @@ const taglines: Record<string, string> = {
 
 export default async function OpengraphImage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const pts = "0,0 28,0 50,36 72,0 100,0 64,59 64,120 36,120 36,59";
   return new ImageResponse(
     (
       <div style={{ width: "100%", height: "100%", display: "flex", background: "#04060c", color: "#f2f5fa", padding: 72, position: "relative", fontFamily: "sans-serif" }}>
         <div style={{ position: "absolute", right: -120, top: -160, width: 700, height: 700, borderRadius: 700, background: "rgba(47,107,255,0.28)", filter: "blur(120px)" }} />
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "100%" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-            <svg width="56" height="64" viewBox="-4 -26 136 150">
-              <polygon points={pts} transform="translate(26,-22)" fill="none" stroke="#2f6bff" strokeWidth="5" />
-              <polygon points={pts} fill="#f2f5fa" />
+            <svg width="64" height="67" viewBox={`0 0 ${MARK.width} ${MARK.height}`}>
+              <polygon points={markPoints(MARK.blue)} fill={BRAND_BLUE} />
+              <polygon points={markPoints(MARK.white)} fill="#f2f5fa" />
             </svg>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <span style={{ fontSize: 34, fontWeight: 700, letterSpacing: -1 }}>YESIR</span>
-              <span style={{ fontSize: 14, letterSpacing: 10, color: "#a3aec4" }}>DESIGN</span>
+              <span style={{ fontSize: 34, fontWeight: 700, letterSpacing: 8 }}>YESIR</span>
+              <span style={{ fontSize: 14, letterSpacing: 14, color: BRAND_BLUE }}>DESIGN</span>
             </div>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>

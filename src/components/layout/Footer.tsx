@@ -26,7 +26,7 @@ export async function Footer() {
       <div className="container-site py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Logo />
+            <Logo className="h-12" />
             <p className="mt-6 max-w-sm text-fg-muted">{t.footer.tagline}</p>
             <p className="mt-6 font-mono text-xs text-fg-subtle">{t.footer.area}</p>
             <ButtonLink href={href(routes.quote)} className="mt-8" arrow>
@@ -103,8 +103,8 @@ export async function Footer() {
       </div>
 
       <div className="container-site" aria-hidden>
-        <p className="select-none whitespace-nowrap font-display text-[clamp(4rem,17vw,16rem)] font-semibold leading-[0.8] tracking-[-0.06em] text-ink-800" dir="ltr">
-          YESIR<span className="text-signal/30">.</span>
+        <p className="select-none whitespace-nowrap text-[clamp(3rem,13.5vw,12.5rem)] leading-[0.85] tracking-[0.06em] text-ink-800" style={{ fontFamily: "var(--font-michroma), sans-serif" }} dir="ltr">
+          YESIR
         </p>
       </div>
 

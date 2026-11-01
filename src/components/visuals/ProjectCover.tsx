@@ -1,5 +1,5 @@
 import type { CoverVariant } from "@/content/catalog";
-import { Y_POINTS } from "./Logo";
+import { BRAND_BLUE, MARK, markPoints } from "./Logo";
 
 /**
  * Art-directed SVG covers used until real project visuals are supplied.
@@ -154,9 +154,9 @@ function MenuCover({ id, label }: { id: string; label?: string }) {
 }
 
 function Editor3DCover({ id, label }: { id: string; label?: string }) {
-  const s = 2.1;
-  const o = { x: 300, y: 150 };
-  const d = { x: 38, y: -30 };
+  const s = 1.75;
+  const o = { x: 300, y: 130 };
+  const d = { x: 34, y: -28 };
   const p = ([x, y]: [number, number], dx = 0, dy = 0) => `${x * s + o.x + dx},${y * s + o.y + dy}`;
   return (
     <Frame id={id} label={label}>
@@ -164,12 +164,15 @@ function Editor3DCover({ id, label }: { id: string; label?: string }) {
         {Array.from({ length: 13 }, (_, i) => <line key={`v${i}`} x1={400 + (i - 6) * 40} y1="460" x2={400 + (i - 6) * 120} y2="600" />)}
         {[460, 490, 530, 580].map((y) => <line key={y} x1="0" y1={y} x2="800" y2={y} />)}
       </g>
-      <polygon points={Y_POINTS.map((v) => p(v)).join(" ")} fill={C.signal} opacity="0.5" filter={`url(#${id}-glow)`} />
-      {Y_POINTS.map((v, i) => {
-        const w = Y_POINTS[(i + 1) % Y_POINTS.length];
-        return <polygon key={i} points={[p(v), p(w), p(w, d.x, d.y), p(v, d.x, d.y)].join(" ")} fill="#101b38" stroke={C.soft} strokeOpacity="0.6" />;
-      })}
-      <polygon points={Y_POINTS.map((v) => p(v)).join(" ")} fill={C.fg} stroke={C.cyan} strokeWidth="1.5" />
+      <polygon points={MARK.white.map((v) => p(v)).join(" ")} fill={C.signal} opacity="0.5" filter={`url(#${id}-glow)`} />
+      {[MARK.blue, MARK.white].map((pts, k) =>
+        pts.map((v, i) => {
+          const w = pts[(i + 1) % pts.length];
+          return <polygon key={`${k}-${i}`} points={[p(v), p(w), p(w, d.x, d.y), p(v, d.x, d.y)].join(" ")} fill="#101b38" stroke={C.soft} strokeOpacity="0.6" />;
+        }),
+      )}
+      <polygon points={MARK.blue.map((v) => p(v)).join(" ")} fill={BRAND_BLUE} stroke={C.cyan} strokeWidth="1.5" />
+      <polygon points={MARK.white.map((v) => p(v)).join(" ")} fill={C.fg} stroke={C.cyan} strokeWidth="1.5" />
       <g transform="translate(250 430)" strokeWidth="3" strokeLinecap="round">
         <line x1="0" y1="0" x2="70" y2="0" stroke={C.signal} />
         <line x1="0" y1="0" x2="0" y2="-70" stroke={C.cyan} />
@@ -273,18 +276,18 @@ function PharmacyCover({ id, label }: { id: string; label?: string }) {
 }
 
 function BrandCover({ id, label }: { id: string; label?: string }) {
-  const s = 1.6;
+  const s = 1.15;
   return (
     <Frame id={id} label={label}>
       <ellipse cx="300" cy="300" rx="220" ry="160" fill={C.signal} opacity="0.35" filter={`url(#${id}-glow)`} />
       <g transform="translate(110 120)">
         <rect width="380" height="360" fill={C.bg2} stroke={C.line} />
         <g transform="translate(40 40)">
-          <polygon points={Y_POINTS.map(([x, y]) => `${x * s + 24},${y * s - 18}`).join(" ")} fill="none" stroke={C.signal} strokeWidth="1.5" />
-          <polygon points={Y_POINTS.map(([x, y]) => `${x * s},${y * s}`).join(" ")} fill={C.fg} />
+          <polygon points={markPoints(MARK.blue, s)} fill={BRAND_BLUE} />
+          <polygon points={markPoints(MARK.white, s)} fill={C.fg} />
         </g>
-        <text x="40" y="300" fill={C.fg} fontFamily="ui-sans-serif, system-ui" fontSize="54" fontWeight="600" letterSpacing="-2">YESIR</text>
-        <text x="42" y="330" fill={C.muted} fontFamily="ui-monospace, monospace" fontSize="14" letterSpacing="9">DESIGN</text>
+        <text x="40" y="300" fill={C.fg} style={{ fontFamily: "var(--font-michroma), sans-serif" }} fontSize="46" textLength="300" lengthAdjust="spacingAndGlyphs">YESIR</text>
+        <text x="42" y="330" fill={BRAND_BLUE} style={{ fontFamily: "var(--font-michroma), sans-serif" }} fontSize="16" textLength="296" lengthAdjust="spacing">DESIGN</text>
       </g>
       <g transform="translate(540 90)">
         <rect width="200" height="380" rx="22" fill={C.bg} stroke={C.soft} strokeOpacity="0.5" />

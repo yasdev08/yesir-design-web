@@ -45,7 +45,7 @@ src/
     ├── portfolio/                # ProjectCard, ProjectFilter
     ├── forms/                    # LeadForm (quote + contact)
     ├── ui/                       # Button, Section, StatusBadge, ChannelIcon
-    └── visuals/                  # Logo, HeroVisual, ProjectCover, CategoryGlyph (custom SVG)
+    └── visuals/                  # Logo (official mark, vectorised), HeroVisual, ProjectCover, CategoryGlyph
 ```
 
 **Design principles**
@@ -58,6 +58,13 @@ src/
 - **Dependencies:** `next`, `react`, `lucide-react`. Nothing else at runtime.
 - **No fabricated content.** Contact channels render only when configured. Projects display an explicit status
   (completed / concept / internal product / in progress). Covers are labelled illustrations until real visuals are added.
+
+## Logo
+
+The official logo is vectorised in `src/components/visuals/Logo.tsx` (`MARK` polygons + Michroma wordmark),
+so it stays sharp at every size and sits on the site background without a box. The same mark drives the favicon
+(`src/app/icon.svg`), the Open Graph image, the hero sign letter and the brand project cover.
+If you receive the source vector (SVG/AI/PDF) from the designer, replace the `MARK` coordinates with its paths.
 
 ## Installation
 
@@ -157,6 +164,5 @@ After the first deployment, submit `https://<domain>/sitemap.xml` in Google Sear
 
 - [ ] Set `NEXT_PUBLIC_SITE_URL`, contact variables and at least one lead delivery channel, then submit a test lead.
 - [ ] Confirm each project's **status** and description in `catalog.ts` / `copy/*` and add real visuals.
-- [ ] Replace the provisional SVG logo (`src/components/visuals/Logo.tsx`, `src/app/icon.svg`) with the official one if different.
 - [ ] Have the privacy policy and terms (`src/content/legal/*`) reviewed by a legal professional and complete the legal entity details.
 - [ ] Register the domain in Google Search Console and create/verify the Google Business Profile.

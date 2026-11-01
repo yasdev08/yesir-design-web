@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Sans_Arabic, Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { IBM_Plex_Sans_Arabic, Instrument_Serif, Inter_Tight, JetBrains_Mono, Michroma } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { localeMeta, locales } from "@/i18n/config";
 import { getContent, getDictionary, getLocale } from "@/i18n/server";
@@ -14,6 +14,7 @@ import "../globals.css";
 const interTight = Inter_Tight({ subsets: ["latin", "latin-ext"], variable: "--font-inter-tight", display: "swap" });
 const instrumentSerif = Instrument_Serif({ subsets: ["latin", "latin-ext"], weight: "400", style: ["italic", "normal"], variable: "--font-instrument-serif", display: "swap" });
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono", display: "swap" });
+const michroma = Michroma({ subsets: ["latin"], weight: "400", variable: "--font-michroma", display: "swap" });
 const plexArabic = IBM_Plex_Sans_Arabic({ subsets: ["arabic"], weight: ["400", "500", "600"], variable: "--font-plex-arabic", display: "swap", preload: false });
 
 export function generateStaticParams() {
@@ -42,7 +43,7 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
   const t = getDictionary(locale);
   const c = getContent(locale);
   const meta = localeMeta[locale];
-  const fontVars = [interTight.variable, instrumentSerif.variable, jetbrainsMono.variable, plexArabic.variable].join(" ");
+  const fontVars = [interTight.variable, instrumentSerif.variable, jetbrainsMono.variable, plexArabic.variable, michroma.variable].join(" ");
 
   return (
     <html lang={meta.htmlLang} dir={meta.dir} className={fontVars}>

@@ -28,7 +28,7 @@ export async function Header() {
       <div className="header-bg absolute inset-0 -z-10 border-b border-transparent" aria-hidden />
       <div className="container-site flex h-[4.5rem] items-center justify-between gap-6">
         <Link href={href("/")} className="shrink-0" aria-label={`YESIR DESIGN — ${t.nav.home}`}>
-          <Logo />
+          <Logo className="h-9 lg:h-10" />
         </Link>
 
         <nav aria-label={t.nav.mainLabel} className="hidden lg:block">

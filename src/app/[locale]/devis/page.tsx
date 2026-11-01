@@ -70,7 +70,7 @@ export default async function QuotePage() {
               </div>
             </div>
             <div className="lg:col-span-7">
-              <div className="border border-line bg-ink-950/80 p-6 backdrop-blur md:p-10">
+              <div className="border border-line bg-ink-950 p-6 md:p-10">
                 <Suspense fallback={<LeadForm kind="quote" {...formProps} />}>
                   <QuoteFormWithParams {...formProps} />
                 </Suspense>

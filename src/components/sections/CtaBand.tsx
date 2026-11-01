@@ -13,7 +13,7 @@ export async function CtaBand({ title, accent, lead }: { title?: string; accent?
   return (
     <section className="relative overflow-hidden border-y border-line bg-ink-900" aria-labelledby="cta-title">
       <div className="bg-blueprint bg-blueprint-fade absolute inset-0" aria-hidden />
-      <div aria-hidden className="absolute -end-40 -top-40 size-[36rem] rounded-full bg-signal/20 blur-[120px]" />
+      <div aria-hidden className="glow-blob absolute -end-64 -top-64 size-[52rem] [--glow-alpha:0.2]" />
       <div className="container-site relative py-section">
         <div className="max-w-4xl" data-reveal>
           <Eyebrow>{t.home.cta.eyebrow}</Eyebrow>

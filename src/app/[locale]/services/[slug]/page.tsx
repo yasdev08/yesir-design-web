@@ -64,7 +64,7 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
           />
         }
         aside={
-          <div className="border border-line bg-ink-900/70 p-6 backdrop-blur" data-reveal>
+          <div className="border border-line bg-ink-900 p-6" data-reveal>
             <CategoryGlyph id={category.id} className="size-10 text-signal-soft" />
             <p className="mt-5 text-lg font-medium">{copy.name}</p>
             <p className="mt-2 text-sm text-fg-muted">{copy.short}</p>

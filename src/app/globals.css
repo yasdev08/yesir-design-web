@@ -86,11 +86,11 @@
     60% { opacity: 0.45; }
   }
   @keyframes power-on {
-    0% { opacity: 0; filter: brightness(0.3); }
-    18% { opacity: 1; filter: brightness(1.6); }
+    0% { opacity: 0; }
+    18% { opacity: 1; }
     24% { opacity: 0.35; }
-    32% { opacity: 1; filter: brightness(1.1); }
-    100% { opacity: 1; filter: brightness(1); }
+    32% { opacity: 1; }
+    100% { opacity: 1; }
   }
   @keyframes scan {
     from { transform: translateY(-100%); }
@@ -266,6 +266,13 @@
   }
 }
 
+/* Soft light glow drawn with a gradient instead of filter: blur() (far cheaper to paint). */
+@utility glow-blob {
+  pointer-events: none;
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, rgb(47 107 255 / var(--glow-alpha, 0.16)), transparent);
+}
+
 @utility container-site {
   width: 100%;
   max-width: var(--container-site);
@@ -277,11 +284,12 @@
 ::view-transition {
   pointer-events: none;
 }
+/* Kept deliberately short: long whole-page transitions make navigation feel slow on phones. */
 ::view-transition-old(.page) {
-  animation: 180ms ease-in both vt-fade-out;
+  animation: 90ms ease-in both vt-fade-out;
 }
 ::view-transition-new(.page) {
-  animation: 520ms var(--ease-out-expo) 120ms both vt-rise-in;
+  animation: 200ms ease-out both vt-fade-in;
 }
 ::view-transition-group(site-header) {
   animation: none;
@@ -300,9 +308,8 @@
 @keyframes vt-fade-out {
   to { opacity: 0; }
 }
-@keyframes vt-rise-in {
-  from { opacity: 0; translate: 0 16px; }
-  to { opacity: 1; translate: 0 0; }
+@keyframes vt-fade-in {
+  from { opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -323,9 +330,9 @@
 }
 
 /* ---- Header: background solidifies on scroll (CSS scroll-driven, no JS) */
+/* Opacity-only (GPU-composited) — no backdrop-filter, which repaints on every scroll frame. */
 .header-bg {
-  background: rgb(4 6 12 / 0.86);
-  backdrop-filter: blur(14px);
+  background: rgb(4 6 12 / 0.94);
   border-color: var(--color-line);
 }
 @supports (animation-timeline: scroll()) {
@@ -336,8 +343,8 @@
   }
 }
 @keyframes header-solid {
-  from { background: rgb(4 6 12 / 0); backdrop-filter: blur(0); border-color: transparent; }
-  to { background: rgb(4 6 12 / 0.86); backdrop-filter: blur(14px); border-color: var(--color-line); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* ---- Mobile menu (<dialog>) */

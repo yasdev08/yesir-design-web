@@ -39,9 +39,14 @@ function Frame({ id, children, label }: { id: string; children: React.ReactNode;
         <pattern id={`${id}-grid`} width="40" height="40" patternUnits="userSpaceOnUse">
           <path d="M40 0H0V40" fill="none" stroke={C.soft} strokeOpacity="0.06" />
         </pattern>
-        <filter id={`${id}-glow`} x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="18" />
-        </filter>
+        <radialGradient id={`${id}-glow`}>
+          <stop offset="0" stopColor={C.signal} stopOpacity="0.45" />
+          <stop offset="1" stopColor={C.signal} stopOpacity="0" />
+        </radialGradient>
+        <radialGradient id={`${id}-glow-cyan`}>
+          <stop offset="0" stopColor={C.cyan} stopOpacity="0.45" />
+          <stop offset="1" stopColor={C.cyan} stopOpacity="0" />
+        </radialGradient>
       </defs>
       <rect width="800" height="600" fill={`url(#${id}-bg)`} />
       <rect width="800" height="600" fill={`url(#${id}-grid)`} />
@@ -86,7 +91,7 @@ function QR({ x, y, size, seed }: { x: number; y: number; size: number; seed: nu
 function WebCover({ id, label }: { id: string; label?: string }) {
   return (
     <Frame id={id} label={label}>
-      <ellipse cx="560" cy="200" rx="200" ry="120" fill={C.signal} opacity="0.35" filter={`url(#${id}-glow)`} />
+      <ellipse cx="560" cy="200" rx="260" ry="180" fill={`url(#${id}-glow)`} />
       <g transform="translate(120 80)">
         <rect width="560" height="400" rx="6" fill={C.bg2} stroke={C.line} />
         <rect width="560" height="34" rx="6" fill={C.panel} />
@@ -133,7 +138,7 @@ function MenuCover({ id, label }: { id: string; label?: string }) {
         <rect x="200" y="240" width="20" height="40" fill={C.line} />
         <rect x="150" y="278" width="120" height="6" fill={C.line} />
       </g>
-      <ellipse cx="250" cy="330" rx="150" ry="200" fill={C.signal} opacity="0.3" filter={`url(#${id}-glow)`} />
+      <ellipse cx="250" cy="330" rx="210" ry="260" fill={`url(#${id}-glow)`} />
       <g transform="translate(150 110)">
         <rect width="200" height="390" rx="26" fill={C.bg} stroke={C.soft} strokeOpacity="0.6" strokeWidth="1.5" />
         <rect x="70" y="14" width="60" height="8" rx="4" fill={C.panel} />
@@ -164,7 +169,7 @@ function Editor3DCover({ id, label }: { id: string; label?: string }) {
         {Array.from({ length: 13 }, (_, i) => <line key={`v${i}`} x1={400 + (i - 6) * 40} y1="460" x2={400 + (i - 6) * 120} y2="600" />)}
         {[460, 490, 530, 580].map((y) => <line key={y} x1="0" y1={y} x2="800" y2={y} />)}
       </g>
-      <polygon points={MARK.white.map((v) => p(v)).join(" ")} fill={C.signal} opacity="0.5" filter={`url(#${id}-glow)`} />
+      <ellipse cx={o.x + (MARK.width / 2) * s} cy={o.y + (MARK.height / 2) * s} rx={MARK.width * s} ry={MARK.height * s} fill={`url(#${id}-glow)`} />
       {[MARK.blue, MARK.white].map((pts, k) =>
         pts.map((v, i) => {
           const w = pts[(i + 1) % pts.length];
@@ -248,7 +253,7 @@ function PharmacyCover({ id, label }: { id: string; label?: string }) {
   return (
     <Frame id={id} label={label}>
       <g transform="translate(260 280)">
-        <path d={cross} fill={C.cyan} opacity="0.55" filter={`url(#${id}-glow)`} />
+        <circle r="190" fill={`url(#${id}-glow-cyan)`} />
         <path d={cross} transform="translate(16 -14)" fill="#0f2140" stroke={C.soft} strokeOpacity="0.6" />
         <path d={cross} fill={C.fg} stroke={C.cyan} strokeWidth="2" />
         <path d={cross} fill="none" stroke={C.signal} strokeWidth="1" transform="scale(0.78)" />
@@ -279,7 +284,7 @@ function BrandCover({ id, label }: { id: string; label?: string }) {
   const s = 1.15;
   return (
     <Frame id={id} label={label}>
-      <ellipse cx="300" cy="300" rx="220" ry="160" fill={C.signal} opacity="0.35" filter={`url(#${id}-glow)`} />
+      <ellipse cx="300" cy="300" rx="280" ry="220" fill={`url(#${id}-glow)`} />
       <g transform="translate(110 120)">
         <rect width="380" height="360" fill={C.bg2} stroke={C.line} />
         <g transform="translate(40 40)">

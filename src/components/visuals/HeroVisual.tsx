@@ -68,6 +68,7 @@ export function HeroVisual({ title }: { title: string }) {
   const [sx, sy] = pt(MARK.white[3]);
 
   return (
+    <div className="relative">
     <svg viewBox="0 0 640 640" className="h-auto w-full" role="img" aria-label={title} direction="ltr">
       <defs>
         <linearGradient id="hv-white" x1="0" y1="0" x2="0.3" y2="1">
@@ -82,37 +83,16 @@ export function HeroVisual({ title }: { title: string }) {
           <stop offset="0" stopColor="#1a2a55" />
           <stop offset="1" stopColor="#0b1328" />
         </linearGradient>
-        <filter id="hv-glow" x="-40%" y="-40%" width="180%" height="180%">
-          <feGaussianBlur stdDeviation="22" />
-        </filter>
+        <radialGradient id="hv-glow">
+          <stop offset="0" stopColor="#2f6bff" stopOpacity="0.55" />
+          <stop offset="1" stopColor="#2f6bff" stopOpacity="0" />
+        </radialGradient>
         <pattern id="hv-grid" width="32" height="32" patternUnits="userSpaceOnUse">
           <path d="M32 0H0V32" fill="none" stroke="#8fb0ff" strokeOpacity="0.07" />
         </pattern>
       </defs>
 
       <rect width="640" height="640" fill="url(#hv-grid)" />
-
-      {/* Pixel mark — the digital origin */}
-      <g>
-        {PIXELS.flatMap((row, r) =>
-          row.map((cell, c) => (
-            <rect
-              key={`${r}-${c}`}
-              x={grid.x + c * pitch}
-              y={grid.y + r * pitch}
-              width={10}
-              height={10}
-              fill={cell === "b" ? BRAND_BLUE : cell === "w" ? "#f2f5fa" : "#8fb0ff"}
-              fillOpacity={cell ? 1 : 0.06}
-              className={cell ? "animate-pixel" : undefined}
-              style={cell ? { animationDelay: `${((r * 7 + c * 13) % 23) * 0.21}s` } : undefined}
-            />
-          )),
-        )}
-        <text x={grid.x} y={grid.y - 16} className="fill-fg-subtle font-mono" fontSize="11" letterSpacing="1.5">
-          {COLS} × {ROWS} PX
-        </text>
-      </g>
 
       {/* Projection lines from pixel to physical letter */}
       <g stroke="#8fb0ff" strokeOpacity="0.28" strokeDasharray="3 5" strokeWidth="1">
@@ -124,8 +104,7 @@ export function HeroVisual({ title }: { title: string }) {
 
       {/* Physical channel letter */}
       <g className="animate-power-on">
-        <polygon points={poly(MARK.white)} fill="#2f6bff" opacity="0.45" filter="url(#hv-glow)" />
-        <polygon points={poly(MARK.blue)} fill={BRAND_BLUE} opacity="0.7" filter="url(#hv-glow)" />
+        <ellipse cx={O.x + W / 2} cy={O.y + H / 2} rx={W * 0.85} ry={H * 0.8} fill="url(#hv-glow)" />
         <Returns pts={MARK.blue} />
         <Returns pts={MARK.white} />
         <polygon points={poly(MARK.blue)} fill="url(#hv-blue)" stroke="#8fb0ff" strokeWidth="1" strokeLinejoin="round" />
@@ -149,5 +128,31 @@ export function HeroVisual({ title }: { title: string }) {
         <text x={grid.x} y={grid.y + ROWS * pitch + 24}>{BRAND_BLUE.toUpperCase()}</text>
       </g>
     </svg>
+    {/* Animated pixels live in their own layer so their flicker never repaints the letter. */}
+    <svg viewBox="0 0 640 640" className="pointer-events-none absolute inset-0 h-full w-full [contain:strict]" aria-hidden direction="ltr">
+      {/* Pixel mark — the digital origin */}
+      <g>
+        {PIXELS.flatMap((row, r) =>
+          row.map((cell, c) => (
+            <rect
+              key={`${r}-${c}`}
+              x={grid.x + c * pitch}
+              y={grid.y + r * pitch}
+              width={10}
+              height={10}
+              fill={cell === "b" ? BRAND_BLUE : cell === "w" ? "#f2f5fa" : "#8fb0ff"}
+              fillOpacity={cell ? 1 : 0.06}
+              className={cell ? "animate-pixel" : undefined}
+              style={cell ? { animationDelay: `${((r * 7 + c * 13) % 23) * 0.21}s` } : undefined}
+            />
+          )),
+        )}
+        <text x={grid.x} y={grid.y - 16} className="fill-fg-subtle font-mono" fontSize="11" letterSpacing="1.5">
+          {COLS} × {ROWS} PX
+        </text>
+      </g>
+
+    </svg>
+    </div>
   );
 }

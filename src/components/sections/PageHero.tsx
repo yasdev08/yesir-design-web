@@ -47,7 +47,7 @@ export function PageHero({
   return (
     <section className={cn("relative overflow-hidden border-b border-line pb-16 pt-36 md:pb-24 md:pt-44", className)}>
       <div className="bg-blueprint bg-blueprint-fade absolute inset-0" aria-hidden />
-      <div aria-hidden className="absolute -top-48 end-[-10%] size-[40rem] rounded-full bg-signal/15 blur-[140px]" />
+      <div aria-hidden className="glow-blob absolute -top-80 end-[-20%] size-[56rem]" />
       <div className="container-site relative">
         {breadcrumbs && <div className="mb-10">{breadcrumbs}</div>}
         <div className="grid gap-12 lg:grid-cols-12 lg:items-end">

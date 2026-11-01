@@ -29,7 +29,7 @@ export default async function HomePage() {
       {/* ---------------------------------------------------------- HERO */}
       <section className="relative overflow-hidden pt-28 md:pt-32" aria-labelledby="hero-title">
         <div className="bg-blueprint bg-blueprint-fade absolute inset-0" aria-hidden />
-        <div aria-hidden className="absolute end-[-15%] top-[-10%] size-[52rem] rounded-full bg-signal/[0.13] blur-[160px]" />
+        <div aria-hidden className="glow-blob absolute end-[-25%] top-[-25%] size-[70rem]" />
         <div className="container-site relative">
           <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-6">
             <div className="lg:col-span-7">

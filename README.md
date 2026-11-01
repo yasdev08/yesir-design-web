@@ -26,7 +26,7 @@ src/
 │   │   ├── not-found.tsx         # Localized 404
 │   │   └── [...rest]/            # Unknown paths → localized 404
 │   ├── actions/leads.ts          # Server Action: anti-spam, rate limit, validation, delivery
-│   ├── sitemap.ts · robots.ts · manifest.ts · icon.svg
+│   ├── sitemap.ts · robots.ts (AI crawlers allowed) · llms.txt/ · manifest.ts · icon.svg
 │   └── globals.css               # Design system (tokens, type scale, motion)
 ├── proxy.ts                      # Redirects unprefixed URLs to a locale (Accept-Language, default fr)
 ├── config/site.ts                # Business config from env vars (contacts, address, socials)

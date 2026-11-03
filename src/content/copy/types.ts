@@ -35,6 +35,8 @@ export interface ProjectCopy {
   scope: string[];
   /** Alt text describing the cover visual. */
   coverAlt: string;
+  /** Alt text for each real image, in the same order as `images` in catalog.ts. */
+  imageAlts?: string[];
 }
 
 export interface ContentCopy {

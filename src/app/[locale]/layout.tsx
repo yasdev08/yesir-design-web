@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans_Arabic, Instrument_Serif, Inter_Tight, JetBrains_Mono, Michroma } from "next/font/google";
 import { siteConfig } from "@/config/site";
-import { localeMeta, locales } from "@/i18n/config";
+import { localeMeta, localePath, locales } from "@/i18n/config";
 import { getContent, getDictionary, getLocale } from "@/i18n/server";
 import { buildMetadata } from "@/lib/seo";
 import { organizationSchema } from "@/lib/schema";
@@ -9,6 +9,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileContactBar } from "@/components/layout/MobileContactBar";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Analytics } from "@/components/analytics/Analytics";
+import { routes } from "@/lib/routes";
 import "../globals.css";
 
 const interTight = Inter_Tight({ subsets: ["latin", "latin-ext"], variable: "--font-inter-tight", display: "swap" });
@@ -58,6 +60,7 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
         <main id="main">{children}</main>
         <Footer />
         <MobileContactBar />
+        <Analytics labels={t.consent} policyHref={localePath(locale, routes.privacy)} />
         <JsonLd data={organizationSchema(locale, t.meta.description, Object.values(c.services).map((s) => s.name))} />
       </body>
     </html>

@@ -12,7 +12,7 @@ export async function MobileContactBar() {
   return (
     <>
       <div aria-hidden className="h-[4.5rem] md:hidden" />
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ink-950 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 md:hidden">
+      <div data-contact-bar className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-ink-950 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 md:hidden">
         <div className="flex gap-2">
           {quick.map((ch) => (
             <a

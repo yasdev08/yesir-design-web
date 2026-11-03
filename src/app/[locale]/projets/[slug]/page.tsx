@@ -84,6 +84,12 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
                   <span className="mt-1 block text-sm text-fg-muted">{t.statusHelp[project.status]}</span>
                 </dd>
               </div>
+              {project.partner && (
+                <div className="py-5">
+                  <dt className="font-mono text-eyebrow uppercase text-fg-subtle">{pp.partner}</dt>
+                  <dd className="mt-2">{project.partner}</dd>
+                </div>
+              )}
               <div className="py-5">
                 <dt className="font-mono text-eyebrow uppercase text-fg-subtle">{pp.category}</dt>
                 <dd className="mt-2">{c.categories[project.category].name}</dd>
@@ -139,11 +145,25 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
         </div>
 
         {project.images.length > 1 && (
-          <div className="container-site grid gap-6 pb-section-sm md:grid-cols-2">
-            {project.images.slice(1).map((img) => (
-              <Image key={img.src} src={img.src} alt={copy.coverAlt} width={img.width} height={img.height} className="w-full border border-line" sizes="(min-width: 768px) 50vw, 100vw" />
-            ))}
-          </div>
+          <section aria-labelledby="gallery" className="container-site pb-section-sm">
+            <Eyebrow index="04"><span id="gallery">{pp.gallery}</span></Eyebrow>
+            {/* Full gallery (the hero above is cropped): portrait sets in 3 columns, landscape in 2 */}
+            <ul className={project.images[0].height > project.images[0].width ? "mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" : "mt-8 grid gap-6 md:grid-cols-2"}>
+              {project.images.map((img, i) => (
+                <li key={img.src}>
+                  <Image
+                    src={img.src}
+                    alt={copy.imageAlts?.[i] ?? copy.coverAlt}
+                    width={img.width}
+                    height={img.height}
+                    loading="lazy"
+                    className="h-auto w-full border border-line bg-ink-900"
+                    sizes={project.images[0].height > project.images[0].width ? "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" : "(min-width: 768px) 50vw, 100vw"}
+                  />
+                </li>
+              ))}
+            </ul>
+          </section>
         )}
       </article>
 

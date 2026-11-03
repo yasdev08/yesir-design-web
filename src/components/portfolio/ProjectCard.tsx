@@ -18,7 +18,7 @@ export function ProjectVisual({ project, c, idPrefix, className, priority }: { p
     <ViewTransition name={`project-${project.slug}`} share="morph" default="none">
       <div className={cn("relative overflow-hidden bg-ink-900", className)}>
         {image ? (
-          <Image src={image.src} alt={copy.coverAlt} width={image.width} height={image.height} priority={priority} className="size-full object-cover" sizes="(min-width: 1024px) 50vw, 100vw" />
+          <Image src={image.src} alt={copy.imageAlts?.[0] ?? copy.coverAlt} width={image.width} height={image.height} priority={priority} className={cn("size-full object-cover", image.height > image.width ? "object-[50%_8%]" : "object-center")} sizes="(min-width: 1024px) 50vw, 100vw" />
         ) : (
           <ProjectCover id={`${idPrefix}-${project.slug}`} variant={project.cover} alt={copy.coverAlt} label={copy.name} className="size-full" />
         )}

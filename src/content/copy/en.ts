@@ -342,6 +342,70 @@ const en: ContentCopy = {
   },
 
   projects: {
+    "enseignes-facades": {
+      name: "Signs & storefronts",
+      kind: "Illuminated signage · with MB Pub",
+      summary: "A selection of signs installed for local businesses: illuminated letters, LED neon, light boxes and welcome panels.",
+      context: "Restaurants, snack bars, shops and reception areas needed a presence visible from the street and consistent with their identity.",
+      approach:
+        "Each sign is adapted to its place: illuminated letters on the facades of Pizzeria Fantasia & Shawarma and Zizou Snack, LED neon for Rezki Phone and Saphir Bleu, a cut-out sign for Serina Pizza Fantasia, a wooden wall panel for Falcon Thalassa and a light box for Latino Luxury. Produced in partnership with MB Pub.",
+      scope: ["Sign graphic design", "Illuminated letters and LED neon", "Light boxes and welcome panels", "Fabrication and installation with MB Pub"],
+      coverAlt: "Illuminated “Zizou Snack” sign above a snack bar storefront at night.",
+      imageAlts: [
+        "Illuminated “Zizou Snack” sign above a snack bar storefront at night.",
+        "Storefront with illuminated “Pizzeria Fantasia” and “Shawarma” signs.",
+        "LED neon “Rezki Phone” sign with RZ logo in a phone shop.",
+        "LED neon “Saphir Bleu” logo in glowing blue letters.",
+        "Backlit cut-out “Serina Pizza Fantasia” sign.",
+        "Wooden “Falcon Thalassa” wall panel with white logo and welcome message.",
+        "“Latino Luxury” light box with printed visual.",
+      ],
+    },
+    "maison-crousty-menu-tv": {
+      name: "Maison Crousty — TV menu",
+      kind: "TV screen menu",
+      summary: "A menu shown on three TV screens for Maison Crousty: burgers, tender boxes, rice bowls, poutines and pasta.",
+      context: "Maison Crousty needed a menu readable from across the room, easy to update, that showcases its dishes and prices.",
+      approach:
+        "We designed three TV-format screens with black-and-gold art direction, a clear hierarchy by category, prices in dinars, and extras, drinks and sides grouped together.",
+      scope: ["Black-and-gold art direction", "Three TV screens (Full HD and 4K)", "Menu organised by category", "Prices, extras and drinks"],
+      coverAlt: "Maison Crousty menu screen showing rice bowls and prices on a black-and-gold background.",
+      imageAlts: [
+        "Maison Crousty menu screen: “Ta Hsty” rice bowls and prices.",
+        "Maison Crousty menu screen: poutines and pasta with prices.",
+        "Maison Crousty menu screen: burger, tender boxes, extras and drinks.",
+      ],
+    },
+    "wonder-food-menus": {
+      name: "Wonder Food's Maraval — menus",
+      kind: "Printed menus · with MB Pub",
+      summary: "Wonder Food's Maraval printed menus: crêpes, waffles, cheesecakes, sundaes, desserts and drinks, with QR codes.",
+      context: "Wonder Food's Maraval offers a very large dessert menu. It had to stay readable despite the number of products and prices.",
+      approach:
+        "We organised the menu into four colourful panels, grouped products by family with photos and prices, and added QR codes to continue the menu on mobile. Produced in partnership with MB Pub.",
+      scope: ["Layout of four menu panels", "Product photos and prices by family", "Integrated QR codes", "Print-ready files"],
+      coverAlt: "Wonder Food's Maraval menu showing crêpes and prices on a yellow background.",
+      imageAlts: [
+        "Wonder Food's Maraval menu: juices, milkshakes, hot drinks and tiramisu.",
+        "Wonder Food's Maraval menu: sundaes, cheesecakes, boxes and desserts.",
+        "Wonder Food's Maraval menu: waffles, cookies, brownies and cakes.",
+        "Wonder Food's Maraval menu: crêpes and tarts, with QR code.",
+      ],
+    },
+    "panneaux-qr": {
+      name: "QR signs",
+      kind: "QR ordering & booking",
+      summary: "QR signs that connect a physical place to online ordering or booking, for Bendenia Food and Maison Mia.",
+      context: "Bendenia Food wanted to make ordering easier, Maison Mia to simplify booking: in both cases, customers had to go from the sign to their phone in one gesture.",
+      approach:
+        "We designed signs in each brand's colours, with a prominent QR code and an explicit call to action: “Scan to order” for Bendenia Food, “Scan to book” for the Maison Mia salon.",
+      scope: ["Sign design in each brand's identity", "QR codes to ordering and booking", "Clear calls to action", "Production files"],
+      coverAlt: "Bendenia Food sign with a “Scan to order” QR code.",
+      imageAlts: [
+        "Bendenia Food sign with a “Scan to order” QR code.",
+        "Visual of the Maison Mia salon “Book an appointment” QR sign.",
+      ],
+    },
     "mb-pub": {
       name: "MB Pub",
       kind: "Digital presence & website",

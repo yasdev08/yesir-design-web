@@ -4,6 +4,7 @@ import { getDictionary, getLocale } from "@/i18n/server";
 import { buildMetadata } from "@/lib/seo";
 import { restaurantsSchema } from "@/lib/restaurants-schema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Tracking } from "@/components/restaurants/Tracking";
 import { Hero } from "@/components/restaurants/Hero";
 import { Proof } from "@/components/restaurants/Proof";
 import { Pricing } from "@/components/restaurants/Pricing";
@@ -34,6 +35,7 @@ export default async function RestaurantsPage() {
       <FinalCta copy={copy} locale={locale} />
       <FloatingWhatsApp copy={copy} />
       <JsonLd data={restaurantsSchema(locale, copy, t.nav.home)} />
+      <Tracking contentName="restaurants" />
     </>
   );
 }

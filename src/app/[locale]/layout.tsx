@@ -6,6 +6,7 @@ import { getContent, getDictionary, getLocale } from "@/i18n/server";
 import { buildMetadata } from "@/lib/seo";
 import { organizationSchema } from "@/lib/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Analytics } from "@vercel/analytics/next";
 import "../globals.css";
 
 const interTight = Inter_Tight({ subsets: ["latin", "latin-ext"], variable: "--font-inter-tight", display: "swap" });
@@ -52,6 +53,7 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
           {t.nav.skip}
         </a>
         {children}
+        <Analytics />
         <JsonLd data={organizationSchema(locale, t.meta.description, Object.values(c.services).map((s) => s.name))} />
       </body>
     </html>

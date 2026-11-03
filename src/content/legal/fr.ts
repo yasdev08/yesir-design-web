@@ -5,7 +5,7 @@ import type { LegalCopy } from "./types";
  * with the company's registration details before going live.
  */
 const fr: LegalCopy = {
-  updated: "2026-11-01",
+  updated: "2026-11-03",
   privacy: {
     intro:
       "Cette politique explique quelles données personnelles {brand} collecte via ce site, pourquoi, combien de temps elles sont conservées et comment exercer vos droits. Elle s'inscrit dans le cadre de la loi algérienne n° 18-07 du 10 juin 2018 relative à la protection des personnes physiques dans le traitement des données à caractère personnel.",
@@ -40,8 +40,8 @@ const fr: LegalCopy = {
         paragraphs: ["Les demandes qui n'aboutissent pas à un contrat sont conservées au maximum 24 mois après le dernier échange. Les données liées à un contrat sont conservées pendant la durée de la relation commerciale puis pendant les durées imposées par la réglementation."],
       },
       {
-        title: "Cookies",
-        paragraphs: ["Ce site n'utilise pas de cookies publicitaires ni d'outils de suivi tiers. Seuls des éléments strictement nécessaires à son fonctionnement peuvent être utilisés. Si des outils de mesure d'audience sont ajoutés, cette politique sera mise à jour et votre consentement sera demandé lorsque requis."],
+        title: "Cookies et mesure d'audience",
+        paragraphs: ["Le site utilise Vercel Web Analytics, une mesure d'audience anonyme sans cookie. Sur certaines pages de campagne (par exemple la page Restaurants), le pixel Meta (Facebook / Instagram) peut être activé : il dépose des cookies Meta et transmet à Meta des informations de navigation (pages vues, clics sur les boutons WhatsApp ou d'appel) afin de mesurer nos publicités et de proposer nos annonces aux visiteurs. Les paramètres de campagne (utm_source, utm_campaign, utm_content) sont conservés uniquement le temps de votre session dans votre navigateur. Vous pouvez refuser ou supprimer ces cookies dans les réglages de votre navigateur et gérer vos préférences publicitaires dans votre compte Meta."],
       },
       {
         title: "Vos droits",

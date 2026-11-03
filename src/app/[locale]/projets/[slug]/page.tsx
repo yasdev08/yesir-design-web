@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
-import { getProject, projects, projectSlugs } from "@/content/catalog";
+import { getProject, isPortrait, projects, projectSlugs } from "@/content/catalog";
 import { localePath } from "@/i18n/config";
 import { getContent, getDictionary, getI18n, getLocale } from "@/i18n/server";
 import { buildMetadata } from "@/lib/seo";
@@ -45,6 +45,7 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
   const pp = t.projectPage;
   const index = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
+  const portrait = isPortrait(project);
 
   return (
     <PageTransition>
@@ -148,7 +149,7 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
           <section aria-labelledby="gallery" className="container-site pb-section-sm">
             <Eyebrow index="04"><span id="gallery">{pp.gallery}</span></Eyebrow>
             {/* Full gallery (the hero above is cropped): portrait sets in 3 columns, landscape in 2 */}
-            <ul className={project.images[0].height > project.images[0].width ? "mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" : "mt-8 grid gap-6 md:grid-cols-2"}>
+            <ul className={portrait ? "mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" : "mt-8 grid gap-6 md:grid-cols-2"}>
               {project.images.map((img, i) => (
                 <li key={img.src}>
                   <Image
@@ -158,7 +159,7 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
                     height={img.height}
                     loading="lazy"
                     className="h-auto w-full border border-line bg-ink-900"
-                    sizes={project.images[0].height > project.images[0].width ? "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" : "(min-width: 768px) 50vw, 100vw"}
+                    sizes={portrait ? "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" : "(min-width: 768px) 50vw, 100vw"}
                   />
                 </li>
               ))}

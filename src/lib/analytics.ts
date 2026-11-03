@@ -22,6 +22,13 @@ declare global {
 
 type Params = Record<string, string | number | undefined>;
 
+/** A failing or extension-replaced tracker must never break the page (e.g. the form success screen). */
+function safely(fn: () => unknown) {
+  try {
+    fn();
+  } catch {}
+}
+
 function clean(params: Params) {
   return Object.fromEntries(Object.entries(params).filter(([, v]) => v !== undefined)) as Record<string, string | number>;
 }
@@ -29,21 +36,17 @@ function clean(params: Params) {
 /** A quote or contact form was successfully delivered. */
 export function trackLead(params: { kind: "quote" | "contact"; service?: string; budget?: string; locale: string }) {
   const p = clean(params);
-  try {
-    vercelTrack("lead", p);
-  } catch {}
-  window.gtag?.("event", "generate_lead", { ...p, form: params.kind });
-  window.fbq?.("track", "Lead", { content_name: params.kind, content_category: params.service });
+  safely(() => vercelTrack("lead", p));
+  safely(() => window.gtag?.("event", "generate_lead", { ...p, form: params.kind }));
+  safely(() => window.fbq?.("track", "Lead", { content_name: params.kind, content_category: params.service }));
 }
 
 /** A WhatsApp, phone or email link was clicked. */
 export function trackContactClick(params: { channel: "whatsapp" | "phone" | "email"; location: string }) {
   const p = clean(params);
-  try {
-    vercelTrack("contact_click", p);
-  } catch {}
-  window.gtag?.("event", "contact_click", p);
-  window.fbq?.("track", "Contact", { content_name: params.channel });
+  safely(() => vercelTrack("contact_click", p));
+  safely(() => window.gtag?.("event", "contact_click", p));
+  safely(() => window.fbq?.("track", "Contact", { content_name: params.channel }));
 }
 
 /* ---- Cookie consent (stored per browser) ------------------------------- */
@@ -51,17 +54,19 @@ export function trackContactClick(params: { channel: "whatsapp" | "phone" | "ema
 export type Consent = "granted" | "denied" | null;
 const KEY = "yd-consent";
 const listeners = new Set<() => void>();
+/** In-memory copy, so the choice still applies for this visit when localStorage is blocked. */
+let memory: Consent = null;
 
 export const consentStore = {
   get(): Consent {
     try {
       const v = localStorage.getItem(KEY);
-      return v === "granted" || v === "denied" ? v : null;
-    } catch {
-      return null;
-    }
+      if (v === "granted" || v === "denied") return v;
+    } catch {}
+    return memory;
   },
   set(value: Exclude<Consent, null> | null) {
+    memory = value;
     try {
       if (value) localStorage.setItem(KEY, value);
       else localStorage.removeItem(KEY);

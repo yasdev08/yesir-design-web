@@ -234,6 +234,12 @@ export const projects: Project[] = [
   },
 ];
 
+/** Portrait projects (e.g. phone photos of signs) use a 3-column gallery and a top-anchored crop. */
+export const isPortrait = (project: Project) => {
+  const first = project.images[0];
+  return Boolean(first && first.height > first.width);
+};
+
 export const getCategory = (id: CategoryId) => categories.find((c) => c.id === id)!;
 export const getService = (slug: string) => services.find((s) => s.slug === slug);
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);

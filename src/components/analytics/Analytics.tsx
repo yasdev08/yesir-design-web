@@ -36,7 +36,8 @@ export function Analytics({ labels, policyHref }: { labels: Labels; policyHref: 
       const href = a.getAttribute("href") ?? "";
       const channel = href.startsWith("https://wa.me") ? "whatsapp" : href.startsWith("tel:") ? "phone" : href.startsWith("mailto:") ? "email" : null;
       if (!channel) return;
-      const location = a.closest("header") ? "header" : a.closest("footer") ? "footer" : a.closest("dialog") ? "mobile_menu" : a.closest("[data-contact-bar]") ? "contact_bar" : window.location.pathname;
+      // The mobile menu <dialog> is rendered inside <header>, so it must be checked first.
+      const location = a.closest("dialog") ? "mobile_menu" : a.closest("header") ? "header" : a.closest("footer") ? "footer" : a.closest("[data-contact-bar]") ? "contact_bar" : window.location.pathname;
       trackContactClick({ channel, location });
     };
     document.addEventListener("click", onClick, { capture: true });
@@ -49,7 +50,9 @@ export function Analytics({ labels, policyHref }: { labels: Labels; policyHref: 
       firstPath.current = false;
       return;
     }
-    window.fbq?.("track", "PageView");
+    try {
+      window.fbq?.("track", "PageView");
+    } catch {}
   }, [pathname]);
 
   return (

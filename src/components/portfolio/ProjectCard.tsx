@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ViewTransition } from "react";
 import { ArrowUpRight } from "lucide-react";
-import type { Project } from "@/content/catalog";
+import { isPortrait, type Project } from "@/content/catalog";
 import type { ContentCopy } from "@/content/copy/types";
 import type { Dictionary } from "@/i18n/dictionaries/fr";
 import { localePath, type Locale } from "@/i18n/config";
@@ -18,7 +18,7 @@ export function ProjectVisual({ project, c, idPrefix, className, priority }: { p
     <ViewTransition name={`project-${project.slug}`} share="morph" default="none">
       <div className={cn("relative overflow-hidden bg-ink-900", className)}>
         {image ? (
-          <Image src={image.src} alt={copy.imageAlts?.[0] ?? copy.coverAlt} width={image.width} height={image.height} priority={priority} className={cn("size-full object-cover", image.height > image.width ? "object-[50%_8%]" : "object-center")} sizes="(min-width: 1024px) 50vw, 100vw" />
+          <Image src={image.src} alt={copy.imageAlts?.[0] ?? copy.coverAlt} width={image.width} height={image.height} priority={priority} className={cn("size-full object-cover", isPortrait(project) ? "object-[50%_8%]" : "object-center")} sizes="(min-width: 1024px) 50vw, 100vw" />
         ) : (
           <ProjectCover id={`${idPrefix}-${project.slug}`} variant={project.cover} alt={copy.coverAlt} label={copy.name} className="size-full" />
         )}

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/config/site";
+import { allowIndexing, siteConfig } from "@/config/site";
 
 /**
  * AI crawlers explicitly welcomed so the agency can be found and cited by
@@ -33,8 +33,7 @@ const AI_CRAWLERS = [
 ];
 
 export default function robots(): MetadataRoute.Robots {
-  const isProduction = siteConfig.url.startsWith("https://") && process.env.NEXT_PUBLIC_ALLOW_INDEXING !== "false";
-  if (!isProduction) {
+  if (!allowIndexing) {
     return { rules: { userAgent: "*", disallow: "/" } };
   }
   return {

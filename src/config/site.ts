@@ -11,12 +11,35 @@ const clean = (value: string | undefined) => {
   return v ? v : undefined;
 };
 
+/**
+ * Public site URL, in order of preference:
+ * 1. NEXT_PUBLIC_SITE_URL (your custom domain),
+ * 2. the production domain Vercel exposes automatically on every build,
+ * 3. localhost for local development.
+ * This means canonical URLs, the sitemap and robots.txt are correct on Vercel
+ * even before NEXT_PUBLIC_SITE_URL is configured.
+ */
+function resolveSiteUrl() {
+  const explicit = clean(process.env.NEXT_PUBLIC_SITE_URL);
+  const vercel = clean(process.env.VERCEL_PROJECT_PRODUCTION_URL) ?? clean(process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL);
+  const url = explicit ?? (vercel ? `https://${vercel.replace(/^https?:\/\//, "")}` : "http://localhost:3000");
+  return url.replace(/\/$/, "");
+}
+
+/**
+ * Search engines and AI crawlers are allowed everywhere except on Vercel
+ * preview deployments, or when NEXT_PUBLIC_ALLOW_INDEXING is explicitly "false".
+ */
+export const allowIndexing =
+  process.env.NEXT_PUBLIC_ALLOW_INDEXING !== "false" &&
+  (process.env.VERCEL_ENV ?? process.env.NEXT_PUBLIC_VERCEL_ENV) !== "preview";
+
 const digits = (value: string | undefined) => clean(value)?.replace(/[^\d]/g, "") || undefined;
 
 export const siteConfig = {
   name: "YESIR DESIGN",
   /** Absolute production URL, used for canonical URLs, sitemap and Open Graph. */
-  url: (clean(process.env.NEXT_PUBLIC_SITE_URL) ?? "http://localhost:3000").replace(/\/$/, ""),
+  url: resolveSiteUrl(),
   /** Legal entity name for legal pages (defaults to the brand name). */
   legalName: clean(process.env.NEXT_PUBLIC_LEGAL_NAME) ?? "YESIR DESIGN",
   contact: {

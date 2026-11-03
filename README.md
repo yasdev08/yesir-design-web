@@ -92,8 +92,8 @@ See `.env.example` for the full annotated list.
 
 | Variable | Scope | Purpose |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | build | Production URL for canonical, hreflang, sitemap, OG. **Required in production.** |
-| `NEXT_PUBLIC_ALLOW_INDEXING` | build | `false` blocks crawlers (staging). Indexing is also blocked when the URL isn't `https://`. |
+| `NEXT_PUBLIC_SITE_URL` | build | Custom domain for canonical, hreflang, sitemap, OG. On Vercel, falls back to the project's production domain (`VERCEL_PROJECT_PRODUCTION_URL`) when unset. |
+| `NEXT_PUBLIC_ALLOW_INDEXING` | build | `false` blocks crawlers. Vercel preview deployments are always blocked automatically; production is always allowed. |
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | build | WhatsApp number, digits only (`2136…`). Enables every WhatsApp button. |
 | `NEXT_PUBLIC_PHONE_NUMBER` / `NEXT_PUBLIC_CONTACT_EMAIL` | build | Click-to-call and email links. |
 | `NEXT_PUBLIC_LEGAL_NAME`, `NEXT_PUBLIC_BUSINESS_*` | build | Legal entity and address (also added to LocalBusiness schema). |
@@ -119,7 +119,7 @@ For Supabase: run `supabase/migrations/0001_leads.sql` in the SQL editor, then s
 ## Deployment
 
 **Vercel (recommended):** import the repository, add the environment variables (Production and Preview), deploy.
-Set `NEXT_PUBLIC_ALLOW_INDEXING=false` on Preview.
+Preview deployments are kept out of search engines automatically.
 
 **Self-hosted (Node):**
 

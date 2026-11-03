@@ -5,9 +5,6 @@ import { localeMeta, locales } from "@/i18n/config";
 import { getContent, getDictionary, getLocale } from "@/i18n/server";
 import { buildMetadata } from "@/lib/seo";
 import { organizationSchema } from "@/lib/schema";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { MobileContactBar } from "@/components/layout/MobileContactBar";
 import { JsonLd } from "@/components/seo/JsonLd";
 import "../globals.css";
 
@@ -54,10 +51,7 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
         >
           {t.nav.skip}
         </a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
-        <MobileContactBar />
+        {children}
         <JsonLd data={organizationSchema(locale, t.meta.description, Object.values(c.services).map((s) => s.name))} />
       </body>
     </html>

@@ -6,16 +6,18 @@ import { cn } from "@/lib/cn";
 import { LazyVideo } from "./LazyVideo";
 import { MediaPlaceholder } from "./MediaPlaceholder";
 
+// Column widths make the 16:9 TV reel and the 9:16 phone reel the same height on desktop
+// (9/16 ÷ 16/9 = 81/256 ≈ 0.316).
 const reels = [
-  { slug: "maison-crousty", aspect: "aspect-video", span: "md:col-span-2" },
-  { slug: "wonder-food", aspect: "aspect-[9/16] max-h-[70vh] mx-auto md:max-h-none", span: "" },
+  { slug: "maison-crousty", aspect: "aspect-video", span: "" },
+  { slug: "wonder-food", aspect: "aspect-[9/16]", span: "mx-auto w-full max-w-xs md:max-w-none" },
 ] as const;
 
 export function Proof({ copy, locale }: { copy: RestaurantsCopy; locale: Locale }) {
   return (
     <section aria-labelledby="proof-title" className="mx-auto max-w-6xl px-4 pb-16">
       <h2 id="proof-title" className="sr-only">{copy.proof.title}</h2>
-      <div className="grid items-start gap-4 md:grid-cols-3">
+      <div className="grid items-start gap-4 md:grid-cols-[1fr_0.316fr]">
         {reels.map(({ slug, aspect, span }) => {
           const project = restaurantProjects.find((p) => p.slug === slug)!;
           const hasVideo = hasPublicAsset(project.video);

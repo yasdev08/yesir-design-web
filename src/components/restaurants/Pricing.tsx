@@ -32,7 +32,7 @@ export function Pricing({ copy, locale }: { copy: RestaurantsCopy; locale: Local
                   </span>
                 )}
                 <h3 className="text-xl font-semibold">{pack.name}</h3>
-                <p className="mt-3 text-4xl font-bold tracking-tight" dir="ltr">
+                <p className="mt-3 text-4xl font-bold tracking-tight" dir={locale === "ar" ? undefined : "ltr"}>
                   <span className="sr-only">{pack.name}: </span>
                   {price}
                 </p>
@@ -63,7 +63,7 @@ export function Pricing({ copy, locale }: { copy: RestaurantsCopy; locale: Local
             <ul className="mt-3 flex flex-wrap gap-2 text-sm text-lp-muted-dark">
               {qrOnly.tiers.map((tier) => (
                 <li key={tier.name} className="rounded-full border border-zinc-200 px-3 py-1.5">
-                  {tier.name} · <span dir="ltr">{formatDA(tier.price, locale)}</span>
+                  {tier.name} · <span dir={locale === "ar" ? undefined : "ltr"}>{formatDA(tier.price, locale)}</span>
                 </li>
               ))}
             </ul>

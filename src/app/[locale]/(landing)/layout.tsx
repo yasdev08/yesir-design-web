@@ -23,7 +23,7 @@ export default async function LandingLayout({ children }: LayoutProps<"/[locale]
     <div className="bg-lp-ink text-white">
       <header className="sticky top-0 z-40 border-b border-lp-line bg-lp-ink/95" style={{ viewTransitionName: "site-header" }}>
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
-          <Link href={localePath(locale, "/")} aria-label={copy.nav.home} className="flex min-h-11 items-center">
+          <Link href={localePath(locale, "/")} prefetch={false} aria-label={copy.nav.home} className="flex min-h-11 items-center">
             <Logo className="h-8" />
           </Link>
           <WaLink message={copy.messages.base} track="header" className="min-h-11 px-4 text-sm">
@@ -38,9 +38,9 @@ export default async function LandingLayout({ children }: LayoutProps<"/[locale]
             © <CurrentYear /> {business.name} · {business.tagline[locale]}
           </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
-            <li><Link href={localePath(locale, "/")} className="inline-flex min-h-11 items-center hover:text-white">{t.nav.home}</Link></li>
-            <li><Link href={localePath(locale, routes.privacy)} className="inline-flex min-h-11 items-center hover:text-white">{t.footer.privacy}</Link></li>
-            <li><Link href={localePath(locale, routes.terms)} className="inline-flex min-h-11 items-center hover:text-white">{t.footer.terms}</Link></li>
+            <li><Link href={localePath(locale, "/")} prefetch={false} className="inline-flex min-h-11 items-center hover:text-white">{t.nav.home}</Link></li>
+            <li><Link href={localePath(locale, routes.privacy)} prefetch={false} className="inline-flex min-h-11 items-center hover:text-white">{t.footer.privacy}</Link></li>
+            <li><Link href={localePath(locale, routes.terms)} prefetch={false} className="inline-flex min-h-11 items-center hover:text-white">{t.footer.terms}</Link></li>
           </ul>
         </div>
       </footer>

@@ -29,6 +29,6 @@ export function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     // Skip Next internals, metadata files and static assets.
-    "/((?!_next|api|favicon.ico|icon.svg|apple-icon|opengraph-image|robots.txt|sitemap.xml|manifest.webmanifest|.*\\.(?:svg|png|jpg|jpeg|webp|avif|gif|ico|txt|xml|html|woff2?)$).*)",
+    "/((?!_next|_vercel|api|favicon.ico|icon.svg|apple-icon|opengraph-image|robots.txt|sitemap.xml|manifest.webmanifest|.*\\.(?:svg|png|jpg|jpeg|webp|avif|gif|ico|txt|xml|html|woff2?)$).*)",
   ],
 };

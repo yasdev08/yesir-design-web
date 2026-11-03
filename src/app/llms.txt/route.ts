@@ -29,6 +29,7 @@ export function GET() {
     `- [Projects](${url("fr", routes.projects)})`,
     `- [About the agency](${url("fr", routes.about)})`,
     `- [Request a quote](${url("fr", routes.quote)})`,
+    `- [Restaurants: animated TV menu + QR menu, prices and examples](${url("fr", routes.restaurants)})`,
     `- [Contact](${url("fr", routes.contact)})`,
     "",
     "## Services",

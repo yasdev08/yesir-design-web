@@ -10,6 +10,7 @@ export const routes = {
   about: "/agence",
   contact: "/contact",
   quote: "/devis",
+  restaurants: "/restaurants",
   privacy: "/confidentialite",
   terms: "/conditions",
 } as const;

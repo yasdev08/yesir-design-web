@@ -7,6 +7,7 @@ import { Projects } from "@/components/restaurants/Projects";
 import { Steps } from "@/components/restaurants/Steps";
 import { Faq } from "@/components/restaurants/Faq";
 import { FinalCta } from "@/components/restaurants/FinalCta";
+import { FloatingWhatsApp } from "@/components/restaurants/FloatingWhatsApp";
 
 export default async function RestaurantsPage() {
   const locale = await getLocale();
@@ -20,6 +21,7 @@ export default async function RestaurantsPage() {
       <Steps copy={copy} />
       <Faq copy={copy} />
       <FinalCta copy={copy} locale={locale} />
+      <FloatingWhatsApp copy={copy} />
     </>
   );
 }

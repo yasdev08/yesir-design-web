@@ -2,6 +2,7 @@ import { restaurantsCopy } from "@/content/restaurants-copy";
 import { getLocale } from "@/i18n/server";
 import { Hero } from "@/components/restaurants/Hero";
 import { Proof } from "@/components/restaurants/Proof";
+import { Pricing } from "@/components/restaurants/Pricing";
 
 export default async function RestaurantsPage() {
   const locale = await getLocale();
@@ -10,6 +11,7 @@ export default async function RestaurantsPage() {
     <>
       <Hero copy={copy} />
       <Proof copy={copy} locale={locale} />
+      <Pricing copy={copy} locale={locale} />
     </>
   );
 }

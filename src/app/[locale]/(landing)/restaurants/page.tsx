@@ -5,6 +5,7 @@ import { Proof } from "@/components/restaurants/Proof";
 import { Pricing } from "@/components/restaurants/Pricing";
 import { Projects } from "@/components/restaurants/Projects";
 import { Steps } from "@/components/restaurants/Steps";
+import { Faq } from "@/components/restaurants/Faq";
 
 export default async function RestaurantsPage() {
   const locale = await getLocale();
@@ -16,6 +17,7 @@ export default async function RestaurantsPage() {
       <Pricing copy={copy} locale={locale} />
       <Projects copy={copy} locale={locale} />
       <Steps copy={copy} />
+      <Faq copy={copy} />
     </>
   );
 }

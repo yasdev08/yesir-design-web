@@ -132,16 +132,36 @@ npm start   # port 3000; put Nginx/Caddy with HTTPS in front
 Cache Components requires the Node.js runtime (no static export, no edge runtime).
 After the first deployment, submit `https://<domain>/sitemap.xml` in Google Search Console.
 
+## Tracking
+
+| Tool | Cookies | How to enable |
+| --- | --- | --- |
+| Vercel Web Analytics | No | Vercel dashboard → project → Analytics → Enable |
+| Vercel Speed Insights | No | Vercel dashboard → project → Speed Insights → Enable |
+| Google Analytics 4 | Yes | Set `NEXT_PUBLIC_GA_ID` (loads only after consent) |
+| Meta Pixel | Yes | Set `NEXT_PUBLIC_META_PIXEL_ID` (loads only after consent) |
+
+Events sent to every enabled tool (`src/lib/analytics.ts`):
+
+- `lead` / GA4 `generate_lead` / Meta `Lead`: a quote or contact form was delivered (with form type, service, budget).
+- `contact_click` / Meta `Contact`: a WhatsApp, phone or email link was clicked (with the channel and where on the page).
+
+When GA4 or the Pixel is configured, a consent banner appears on the first visit and a
+"Manage cookies" link is added to the footer. Custom events in Vercel Web Analytics require a Vercel Pro plan;
+page views work on every plan.
+
 ## Adding or editing a portfolio project
 
 1. Add the slug to `projectSlugs` and an entry in `projects` in `src/content/catalog.ts`:
    - `category`: `web | signage | marketing | automation | products`
    - `status`: `completed | concept | internal | in-progress` — **must reflect reality**, it is shown publicly
    - `services`: related service slugs · `cover`: SVG illustration variant · `featured`: show on the home page
-   - `images`: real visuals, e.g. `[{ src: "/projects/my-project/home.webp", width: 1600, height: 1000 }]`
-     (files in `public/projects/…`). The first image replaces the illustration; others form a gallery.
+   - `images`: real visuals in `public/projects/<slug>/`, e.g. `[{ src: "/projects/my-project/01.jpg", width: 1600, height: 1000 }]`.
+     The first image is the cover; all of them form the gallery on the project page. Resize to ~1800–2600 px on the long
+     edge and strip metadata first — phone photos contain GPS location.
+   - `partner`: optional partner credited publicly (e.g. `"MB Pub"`).
    - `url`: optional live link (with the client's agreement)
-2. Add the localized copy under `projects` in `src/content/copy/fr.ts`, `ar.ts` and `en.ts`
+2. Add the localized copy under `projects` (with optional `imageAlts`, one alt text per image) in `src/content/copy/fr.ts`, `ar.ts` and `en.ts`
    (TypeScript fails the build if a language is missing).
 3. Optionally list the project in a service's `related` array.
 

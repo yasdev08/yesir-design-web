@@ -23,6 +23,10 @@ export const serviceSlugs = [
 export type ServiceSlug = (typeof serviceSlugs)[number];
 
 export const projectSlugs = [
+  "enseignes-facades",
+  "maison-crousty-menu-tv",
+  "wonder-food-menus",
+  "panneaux-qr",
   "mb-pub",
   "menus-digitaux-restaurants",
   "signcraft-3d",
@@ -70,7 +74,12 @@ export interface Project {
   images: { src: string; width: number; height: number }[];
   /** Public URL of the live project, if any and if the client agrees. */
   url?: string;
+  /** Partner credited on the project (shown publicly), e.g. "MB Pub". */
+  partner?: string;
 }
+
+const img = (slug: string, count: number, width: number, height: number) =>
+  Array.from({ length: count }, (_, i) => ({ src: `/projects/${slug}/${String(i + 1).padStart(2, "0")}.jpg`, width, height }));
 
 export const categories: Category[] = [
   {
@@ -109,13 +118,13 @@ export const services: Service[] = [
   { slug: "creation-site-web", category: "web", related: ["mb-pub", "yesir-design"] },
   { slug: "site-e-commerce", category: "web", related: ["storeiq", "mb-pub"] },
   { slug: "applications-web", category: "web", related: ["storeiq", "signcraft-3d"] },
-  { slug: "enseignes-lumineuses", category: "signage", related: ["signcraft-3d", "pharmacie-digitale"] },
-  { slug: "print-supports", category: "signage", related: ["yesir-design", "menus-digitaux-restaurants"] },
+  { slug: "enseignes-lumineuses", category: "signage", related: ["enseignes-facades", "panneaux-qr", "signcraft-3d"] },
+  { slug: "print-supports", category: "signage", related: ["wonder-food-menus", "panneaux-qr", "yesir-design"] },
   { slug: "publicite-meta-google", category: "marketing", related: ["yesir-design", "mb-pub"] },
   { slug: "seo-local", category: "marketing", related: ["pharmacie-digitale", "mb-pub"] },
   { slug: "automatisation-whatsapp", category: "automation", related: ["pharmacie-digitale", "storeiq"] },
-  { slug: "menu-digital", category: "products", related: ["menus-digitaux-restaurants"] },
-  { slug: "outils-digitaux", category: "products", related: ["storeiq", "menus-digitaux-restaurants"] },
+  { slug: "menu-digital", category: "products", related: ["maison-crousty-menu-tv", "wonder-food-menus", "menus-digitaux-restaurants"] },
+  { slug: "outils-digitaux", category: "products", related: ["panneaux-qr", "storeiq"] },
 ];
 
 /**
@@ -124,12 +133,58 @@ export const services: Service[] = [
  */
 export const projects: Project[] = [
   {
+    slug: "enseignes-facades",
+    category: "signage",
+    status: "completed",
+    services: ["enseignes-lumineuses"],
+    cover: "brand",
+    featured: true,
+    partner: "MB Pub",
+    images: img("enseignes-facades", 7, 1350, 1800),
+  },
+  {
+    slug: "maison-crousty-menu-tv",
+    category: "products",
+    status: "completed",
+    services: ["menu-digital"],
+    cover: "menu",
+    featured: true,
+    images: img("maison-crousty-menu-tv", 3, 2400, 1350),
+  },
+  {
+    slug: "wonder-food-menus",
+    category: "signage",
+    status: "completed",
+    services: ["print-supports", "menu-digital"],
+    cover: "menu",
+    featured: true,
+    partner: "MB Pub",
+    images: [
+      { src: "/projects/wonder-food-menus/01.jpg", width: 2600, height: 1467 },
+      { src: "/projects/wonder-food-menus/02.jpg", width: 2600, height: 1470 },
+      { src: "/projects/wonder-food-menus/03.jpg", width: 2600, height: 1473 },
+      { src: "/projects/wonder-food-menus/04.jpg", width: 2600, height: 1459 },
+    ],
+  },
+  {
+    slug: "panneaux-qr",
+    category: "products",
+    status: "completed",
+    services: ["outils-digitaux", "print-supports"],
+    cover: "menu",
+    featured: true,
+    images: [
+      { src: "/projects/panneaux-qr/01.jpg", width: 933, height: 1400 },
+      { src: "/projects/panneaux-qr/02.jpg", width: 860, height: 1120 },
+    ],
+  },
+  {
     slug: "mb-pub",
     category: "web",
     status: "completed",
     services: ["creation-site-web", "seo-local"],
     cover: "web",
-    featured: true,
+    featured: false,
     images: [],
   },
   {
@@ -138,7 +193,7 @@ export const projects: Project[] = [
     status: "completed",
     services: ["menu-digital", "print-supports"],
     cover: "menu",
-    featured: true,
+    featured: false,
     images: [],
   },
   {
@@ -147,7 +202,7 @@ export const projects: Project[] = [
     status: "internal",
     services: ["applications-web", "enseignes-lumineuses"],
     cover: "editor3d",
-    featured: true,
+    featured: false,
     images: [],
   },
   {
@@ -156,7 +211,7 @@ export const projects: Project[] = [
     status: "internal",
     services: ["applications-web", "outils-digitaux"],
     cover: "pos",
-    featured: true,
+    featured: false,
     images: [],
   },
   {
@@ -178,6 +233,12 @@ export const projects: Project[] = [
     images: [],
   },
 ];
+
+/** Portrait projects (e.g. phone photos of signs) use a 3-column gallery and a top-anchored crop. */
+export const isPortrait = (project: Project) => {
+  const first = project.images[0];
+  return Boolean(first && first.height > first.width);
+};
 
 export const getCategory = (id: CategoryId) => categories.find((c) => c.id === id)!;
 export const getService = (slug: string) => services.find((s) => s.slug === slug);

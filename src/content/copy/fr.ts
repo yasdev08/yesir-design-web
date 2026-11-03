@@ -391,6 +391,74 @@ const fr: ContentCopy = {
   },
 
   projects: {
+    "enseignes-facades": {
+      name: "Enseignes & façades",
+      kind: "Signalétique lumineuse · avec MB Pub",
+      summary: "Une sélection d'enseignes posées pour des commerces : lettres lumineuses, néons LED, caissons et panneaux d'accueil.",
+      context:
+        "Restaurants, snacks, boutiques et lieux d'accueil avaient besoin d'une présence visible depuis la rue et cohérente avec leur identité.",
+      approach:
+        "Chaque enseigne est adaptée au lieu : lettres lumineuses en façade pour Pizzeria Fantasia & Shawarma et Zizou Snack, néons LED pour Rezki Phone et Saphir Bleu, enseigne découpée pour Serina Pizza Fantasia, panneau mural en bois pour Falcon Thalassa et caisson lumineux pour Latino Luxury. Projets réalisés en partenariat avec MB Pub.",
+      scope: ["Conception graphique des enseignes", "Lettres lumineuses et néons LED", "Caissons et panneaux d'accueil", "Fabrication et pose avec MB Pub"],
+      coverAlt: "Enseigne lumineuse « Zizou Snack » au-dessus d'une devanture de snack, de nuit.",
+      imageAlts: [
+        "Enseigne lumineuse « Zizou Snack » au-dessus d'une devanture de snack, de nuit.",
+        "Façade avec enseignes lumineuses « Pizzeria Fantasia » et « Shawarma ».",
+        "Enseigne néon LED « Rezki Phone » avec logo RZ dans une boutique de téléphonie.",
+        "Logo néon LED « Saphir Bleu » en lettres bleues lumineuses.",
+        "Enseigne découpée « Serina Pizza Fantasia » rétroéclairée.",
+        "Panneau mural en bois « Falcon Thalassa » avec logo blanc et message de bienvenue.",
+        "Caisson lumineux « Latino Luxury » avec visuel imprimé.",
+      ],
+    },
+    "maison-crousty-menu-tv": {
+      name: "Maison Crousty — menu TV",
+      kind: "Menu sur écrans TV",
+      summary: "Un menu affiché sur trois écrans TV pour Maison Crousty : burgers, box tenders, rice bowls, poutines et pâtes.",
+      context:
+        "Maison Crousty avait besoin d'un menu lisible de loin en salle, facile à faire évoluer, qui mette en valeur ses plats et ses prix.",
+      approach:
+        "Nous avons conçu trois écrans au format TV avec une direction artistique noir et or, une hiérarchie claire par catégorie, les prix en dinars et les suppléments, boissons et accompagnements regroupés.",
+      scope: ["Direction artistique noir et or", "Trois écrans au format TV (Full HD et 4K)", "Organisation de la carte par catégories", "Prix, suppléments et boissons"],
+      coverAlt: "Écran de menu Maison Crousty présentant les rice bowls et leurs prix, sur fond noir et or.",
+      imageAlts: [
+        "Écran de menu Maison Crousty : rice bowls « Ta Hsty » et leurs prix.",
+        "Écran de menu Maison Crousty : poutines et pâtes avec leurs prix.",
+        "Écran de menu Maison Crousty : burger, box tenders, suppléments et boissons.",
+      ],
+    },
+    "wonder-food-menus": {
+      name: "Wonder Food's Maraval — menus",
+      kind: "Menus imprimés · avec MB Pub",
+      summary: "Les menus imprimés de Wonder Food's Maraval : crêpes, gaufres, cheesecakes, sundaes, desserts et boissons, avec QR codes.",
+      context:
+        "Wonder Food's Maraval propose une carte très large de desserts. Le menu devait rester lisible malgré le grand nombre de produits et de prix.",
+      approach:
+        "Nous avons organisé la carte en quatre panneaux colorés, regroupé les produits par famille avec photos et prix, et ajouté des QR codes pour prolonger le menu sur mobile. Réalisé en partenariat avec MB Pub.",
+      scope: ["Mise en page de quatre panneaux de menu", "Photos produits et prix par famille", "QR codes intégrés", "Fichiers prêts à imprimer"],
+      coverAlt: "Menu Wonder Food's Maraval présentant les crêpes et leurs prix sur fond jaune.",
+      imageAlts: [
+        "Menu Wonder Food's Maraval : jus, milkshakes, boissons chaudes et tiramisu.",
+        "Menu Wonder Food's Maraval : sundaes, cheesecakes, box et desserts.",
+        "Menu Wonder Food's Maraval : gaufres, cookies, brownies et gâteaux.",
+        "Menu Wonder Food's Maraval : crêpes et tartes, avec QR code.",
+      ],
+    },
+    "panneaux-qr": {
+      name: "Panneaux QR",
+      kind: "Commande & réservation par QR",
+      summary: "Des panneaux QR qui relient un lieu physique à la commande ou à la réservation en ligne, pour Bendenia Food et Maison Mia.",
+      context:
+        "Bendenia Food voulait faciliter la commande, Maison Mia la prise de rendez-vous : dans les deux cas, le client devait passer de l'enseigne au téléphone en un geste.",
+      approach:
+        "Nous avons conçu des panneaux aux couleurs de chaque marque, avec un QR code bien visible et un appel à l'action explicite : « Scannez pour commander » pour Bendenia Food, « Scannez pour réserver » pour le salon Maison Mia.",
+      scope: ["Design de panneaux à l'identité de chaque marque", "QR codes vers commande et réservation", "Appels à l'action clairs", "Fichiers de production"],
+      coverAlt: "Panneau Bendenia Food avec QR code « Scannez pour commander ».",
+      imageAlts: [
+        "Panneau Bendenia Food avec QR code « Scannez pour commander ».",
+        "Visuel du panneau QR du salon Maison Mia « Prenez rendez-vous ».",
+      ],
+    },
     "mb-pub": {
       name: "MB Pub",
       kind: "Présence digitale & site web",

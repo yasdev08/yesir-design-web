@@ -218,6 +218,8 @@ const en: Dictionary = {
     next: "Next project",
     ctaTitle: "A similar project?",
     ctaLead: "Let's talk about your goals and the best way to reach them.",
+    partner: "In partnership with",
+    gallery: "Gallery",
   },
   about: {
     metaTitle: "The agency — Creative, digital and physical",
@@ -333,6 +335,13 @@ const en: Dictionary = {
       errorSpam: "We couldn't verify your submission. Please reload the page and try again.",
     },
     whatsappSummary: "Hello YESIR DESIGN, I've just sent a quote request",
+  },
+  consent: {
+    text: "We use audience-measurement and advertising cookies (Google Analytics, Meta) to understand how the site is used and improve our campaigns. They are only set with your consent.",
+    accept: "Accept",
+    decline: "Decline",
+    manage: "Manage cookies",
+    policy: "Learn more",
   },
   footer: {
     tagline: "Creative and digital agency. Websites, advertising, automation and signage for Algerian businesses.",

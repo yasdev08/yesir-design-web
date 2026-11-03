@@ -9,6 +9,7 @@ import type { Dictionary } from "@/i18n/dictionaries/fr";
 import type { Locale } from "@/i18n/config";
 import { budgetIds, contactMethodIds, emptyLead, formFields, OTHER_SERVICE, validateLead, type FieldError, type LeadErrors, type LeadField, type LeadInput, type LeadKind, type LeadResult } from "@/lib/leads";
 import { cn } from "@/lib/cn";
+import { trackLead } from "@/lib/analytics";
 import { Arrow, buttonClasses } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/ChannelIcon";
 
@@ -58,6 +59,15 @@ export function LeadForm({ kind, locale, t, serviceGroups = [], initialService =
   useEffect(() => {
     if (startedRef.current && !startedRef.current.value) startedRef.current.value = String(Date.now());
   }, []);
+
+  // Conversion tracking — once per delivered lead (keyed by its reference).
+  const trackedRef = useRef<string | null>(null);
+  const { service: leadService, budget: leadBudget } = values;
+  useEffect(() => {
+    if (result.status !== "success" || trackedRef.current === result.reference) return;
+    trackedRef.current = result.reference;
+    trackLead({ kind, service: leadService || undefined, budget: leadBudget || undefined, locale });
+  }, [result, kind, locale, leadService, leadBudget]);
 
   // Move focus to the result so screen-reader and keyboard users notice it.
   useEffect(() => {

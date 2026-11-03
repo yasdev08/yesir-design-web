@@ -5,7 +5,7 @@ import type { LegalCopy } from "./types";
  * with the company's registration details before going live.
  */
 const fr: LegalCopy = {
-  updated: "2026-11-01",
+  updated: "2026-11-03",
   privacy: {
     intro:
       "Cette politique explique quelles données personnelles {brand} collecte via ce site, pourquoi, combien de temps elles sont conservées et comment exercer vos droits. Elle s'inscrit dans le cadre de la loi algérienne n° 18-07 du 10 juin 2018 relative à la protection des personnes physiques dans le traitement des données à caractère personnel.",
@@ -40,8 +40,12 @@ const fr: LegalCopy = {
         paragraphs: ["Les demandes qui n'aboutissent pas à un contrat sont conservées au maximum 24 mois après le dernier échange. Les données liées à un contrat sont conservées pendant la durée de la relation commerciale puis pendant les durées imposées par la réglementation."],
       },
       {
-        title: "Cookies",
-        paragraphs: ["Ce site n'utilise pas de cookies publicitaires ni d'outils de suivi tiers. Seuls des éléments strictement nécessaires à son fonctionnement peuvent être utilisés. Si des outils de mesure d'audience sont ajoutés, cette politique sera mise à jour et votre consentement sera demandé lorsque requis."],
+        title: "Mesure d’audience et cookies",
+        paragraphs: [
+          "Nous utilisons Vercel Web Analytics et Speed Insights pour mesurer la fréquentation et les performances du site. Ces outils ne déposent pas de cookies et ne permettent pas de vous identifier personnellement.",
+          "Avec votre accord uniquement, nous pouvons aussi utiliser Google Analytics et le Pixel Meta (Facebook / Instagram) pour mesurer nos campagnes publicitaires, par exemple le nombre de demandes de devis ou de clics vers WhatsApp. Ces services déposent des cookies et transmettent des données de navigation à Google et à Meta.",
+          "Vous pouvez accepter ou refuser ces cookies dans le bandeau affiché à votre première visite, et changer d’avis à tout moment avec le lien « Gérer les cookies » en bas de chaque page. Refuser n’empêche pas d’utiliser le site.",
+        ],
       },
       {
         title: "Vos droits",

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
-import { getProject, projects, projectSlugs } from "@/content/catalog";
+import { getProject, isPortrait, projects, projectSlugs } from "@/content/catalog";
 import { localePath } from "@/i18n/config";
 import { getContent, getDictionary, getI18n, getLocale } from "@/i18n/server";
 import { buildMetadata } from "@/lib/seo";
@@ -45,6 +45,7 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
   const pp = t.projectPage;
   const index = projects.findIndex((p) => p.slug === project.slug);
   const next = projects[(index + 1) % projects.length];
+  const portrait = isPortrait(project);
 
   return (
     <PageTransition>
@@ -84,6 +85,12 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
                   <span className="mt-1 block text-sm text-fg-muted">{t.statusHelp[project.status]}</span>
                 </dd>
               </div>
+              {project.partner && (
+                <div className="py-5">
+                  <dt className="font-mono text-eyebrow uppercase text-fg-subtle">{pp.partner}</dt>
+                  <dd className="mt-2">{project.partner}</dd>
+                </div>
+              )}
               <div className="py-5">
                 <dt className="font-mono text-eyebrow uppercase text-fg-subtle">{pp.category}</dt>
                 <dd className="mt-2">{c.categories[project.category].name}</dd>
@@ -139,11 +146,25 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
         </div>
 
         {project.images.length > 1 && (
-          <div className="container-site grid gap-6 pb-section-sm md:grid-cols-2">
-            {project.images.slice(1).map((img) => (
-              <Image key={img.src} src={img.src} alt={copy.coverAlt} width={img.width} height={img.height} className="w-full border border-line" sizes="(min-width: 768px) 50vw, 100vw" />
-            ))}
-          </div>
+          <section aria-labelledby="gallery" className="container-site pb-section-sm">
+            <Eyebrow index="04"><span id="gallery">{pp.gallery}</span></Eyebrow>
+            {/* Full gallery (the hero above is cropped): portrait sets in 3 columns, landscape in 2 */}
+            <ul className={portrait ? "mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" : "mt-8 grid gap-6 md:grid-cols-2"}>
+              {project.images.map((img, i) => (
+                <li key={img.src}>
+                  <Image
+                    src={img.src}
+                    alt={copy.imageAlts?.[i] ?? copy.coverAlt}
+                    width={img.width}
+                    height={img.height}
+                    loading="lazy"
+                    className="h-auto w-full border border-line bg-ink-900"
+                    sizes={portrait ? "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" : "(min-width: 768px) 50vw, 100vw"}
+                  />
+                </li>
+              ))}
+            </ul>
+          </section>
         )}
       </article>
 

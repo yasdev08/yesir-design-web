@@ -221,6 +221,8 @@ const fr = {
     next: "Projet suivant",
     ctaTitle: "Un projet similaire ?",
     ctaLead: "Parlons de vos objectifs et de la meilleure façon de les atteindre.",
+    partner: "En partenariat avec",
+    gallery: "Galerie",
   },
   about: {
     metaTitle: "L'agence — Créative, digitale et physique",
@@ -336,6 +338,13 @@ const fr = {
       errorSpam: "Votre envoi n'a pas pu être vérifié. Rechargez la page et réessayez.",
     },
     whatsappSummary: "Bonjour YESIR DESIGN, je viens d'envoyer une demande de devis",
+  },
+  consent: {
+    text: "Nous utilisons des cookies de mesure d’audience et publicitaires (Google Analytics, Meta) pour comprendre l’usage du site et améliorer nos campagnes. Ils ne sont déposés qu’avec votre accord.",
+    accept: "Accepter",
+    decline: "Refuser",
+    manage: "Gérer les cookies",
+    policy: "En savoir plus",
   },
   footer: {
     tagline: "Agence créative et digitale. Sites web, publicité, automatisation et signalétique pour les entreprises algériennes.",

@@ -7,6 +7,7 @@ import { routes } from "@/lib/routes";
 import { getChannels } from "@/lib/contact";
 import { ChannelIcon } from "@/components/ui/ChannelIcon";
 import { ButtonLink } from "@/components/ui/Button";
+import { ManageConsentButton } from "@/components/analytics/Analytics";
 import { Logo } from "@/components/visuals/Logo";
 
 async function CurrentYear() {
@@ -116,6 +117,7 @@ export async function Footer() {
           <ul className="flex gap-6">
             <li><Link href={href(routes.privacy)} className="hover:text-fg">{t.footer.privacy}</Link></li>
             <li><Link href={href(routes.terms)} className="hover:text-fg">{t.footer.terms}</Link></li>
+            <li><ManageConsentButton label={t.consent.manage} /></li>
           </ul>
         </div>
       </div>

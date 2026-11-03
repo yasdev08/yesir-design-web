@@ -18,6 +18,8 @@ function preferredLocale(request: NextRequest) {
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  // Vercel Web Analytics / Speed Insights scripts and beacons live under /_vercel.
+  if (pathname.startsWith("/_vercel")) return;
   const hasLocale = locales.some((l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`));
   if (hasLocale) return;
 
@@ -28,7 +30,7 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Skip Next internals, metadata files and static assets.
-    "/((?!_next|api|favicon.ico|icon.svg|apple-icon|opengraph-image|robots.txt|sitemap.xml|manifest.webmanifest|.*\\.(?:svg|png|jpg|jpeg|webp|avif|gif|ico|txt|xml|html|woff2?)$).*)",
+    // Skip Next internals, Vercel analytics endpoints, metadata files and static assets.
+    "/((?!_next|_vercel|api|favicon.ico|icon.svg|apple-icon|opengraph-image|robots.txt|sitemap.xml|manifest.webmanifest|.*\\.(?:svg|png|jpg|jpeg|webp|avif|gif|ico|txt|xml|html|woff2?)$).*)",
   ],
 };

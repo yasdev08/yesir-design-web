@@ -126,7 +126,7 @@ export default async function HomePage() {
         <ol className="mt-16 grid border-t border-paper-line md:grid-cols-2">
           {h.why.items.map((item, i) => (
             <li key={item.title} className="border-b border-paper-line py-10 md:odd:border-e md:odd:pe-12 md:even:ps-12" data-reveal>
-              <span className="font-mono text-sm text-signal">{String(i + 1).padStart(2, "0")}</span>
+              <span className="font-mono text-sm text-signal-strong">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="mt-5 text-h3 font-medium text-ink-text">{item.title}</h3>
               <p className="mt-4 max-w-lg text-ink-text-muted">{item.text}</p>
             </li>
@@ -154,10 +154,22 @@ export default async function HomePage() {
         <SectionHeading eyebrow={h.industries.eyebrow} index="05" title={<span id="industries-title">{h.industries.title}</span>} />
         <ul className="mt-16 grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {h.industries.items.map((item, i) => (
-            <li key={item.name} className="group bg-ink-900 p-7 transition-colors hover:bg-ink-850">
+            <li key={item.name} className="group relative bg-ink-900 p-7 transition-colors hover:bg-ink-850">
               <span className="font-mono text-xs text-fg-subtle transition-colors group-hover:text-signal-soft">{String(i + 1).padStart(2, "0")}</span>
-              <h3 className="mt-6 text-lg font-medium">{item.name}</h3>
+              <h3 className="mt-6 text-lg font-medium">
+                {i === 0 ? (
+                  <Link href={href(routes.restaurants)} className="after:absolute after:inset-0">{item.name}</Link>
+                ) : (
+                  item.name
+                )}
+              </h3>
               <p className="mt-2 text-sm text-fg-muted">{item.text}</p>
+              {i === 0 && (
+                <span className="group/btn mt-4 inline-flex items-center gap-2 text-sm font-medium text-signal-soft">
+                  {t.servicePage.restaurantsBanner.cta}
+                  <Arrow />
+                </span>
+              )}
             </li>
           ))}
         </ul>

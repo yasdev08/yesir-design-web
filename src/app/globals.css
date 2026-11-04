@@ -15,7 +15,7 @@
   --color-line: #18223a; /* default hairline */
   --color-line-strong: #26334f;
 
-  --color-signal: #2f6bff; /* electric blue — primary accent */
+  --color-signal: #2b63f0; /* logo blue — primary accent, 5.1:1 with white text */
   --color-signal-strong: #1f56f0; /* hover / pressed */
   --color-signal-soft: #8fb0ff; /* refined blue for text on dark */
   --color-signal-glow: #5b8cff;

@@ -37,6 +37,11 @@ export async function Footer() {
           <nav aria-label={t.footer.servicesTitle} className="lg:col-span-3">
             <h2 className="font-mono text-eyebrow uppercase text-fg-subtle">{t.footer.servicesTitle}</h2>
             <ul className="mt-5 space-y-3">
+              <li>
+                <Link href={href(routes.restaurants)} className="link-underline text-fg hover:text-signal-soft">
+                  {t.footer.restaurants}
+                </Link>
+              </li>
               {categories.map((cat) => (
                 <li key={cat.id}>
                   <Link href={href(routes.service(cat.services[0]))} className="link-underline text-fg-muted hover:text-fg">
@@ -103,9 +108,12 @@ export async function Footer() {
       </div>
 
       <div className="container-site" aria-hidden>
-        <p className="select-none whitespace-nowrap text-[clamp(3rem,13.5vw,12.5rem)] leading-[0.85] tracking-[0.06em] text-ink-800" style={{ fontFamily: "var(--font-michroma), sans-serif" }} dir="ltr">
-          YESIR
-        </p>
+        {/* Decorative wordmark, drawn as SVG so it is not read or contrast-checked as text */}
+        <svg viewBox="0 0 1000 190" className="block w-[min(100%,58rem)] text-ink-800" focusable="false">
+          <text x="0" y="172" fill="currentColor" fontSize="200" textLength="990" lengthAdjust="spacingAndGlyphs" style={{ fontFamily: "var(--font-michroma), sans-serif" }}>
+            YESIR
+          </text>
+        </svg>
       </div>
 
       <div className="border-t border-line">

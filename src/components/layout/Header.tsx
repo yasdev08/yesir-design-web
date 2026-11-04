@@ -17,6 +17,7 @@ export async function Header() {
   const href = (p: string) => localePath(locale, p);
   const items = [
     { href: href(routes.services), label: t.nav.services },
+    { href: href(routes.restaurants), label: t.nav.restaurants },
     { href: href(routes.projects), label: t.nav.projects },
     { href: href(routes.about), label: t.nav.about },
     { href: href(routes.contact), label: t.nav.contact },

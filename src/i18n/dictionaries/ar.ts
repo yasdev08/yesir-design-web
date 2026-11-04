@@ -20,6 +20,7 @@ const ar: Dictionary = {
     language: "اللغة",
     mainLabel: "التنقل الرئيسي",
     servicesOverview: "عرض جميع الخدمات",
+    restaurants: "المطاعم",
   },
   common: {
     startProject: "ابدأ مشروعك",
@@ -193,6 +194,7 @@ const ar: Dictionary = {
     otherServices: "خدمات مكمّلة",
     ctaTitle: "لنتحدّث عن مشروعك.",
     ctaLead: "صِف حاجتك: نعود إليك بردّ أوّلي والخطوات التالية.",
+    restaurantsBanner: { title: "المطاعم: قائمة عرض متحرّكة + قائمة QR", cta: "اكتشف عرض المطاعم" },
     categoryLabel: "القطب",
   },
   projectsPage: {
@@ -345,6 +347,7 @@ const ar: Dictionary = {
     rights: "جميع الحقوق محفوظة.",
     area: "معسكر · وهران · الجزائر العاصمة · وفي كامل التراب الوطني",
     followUs: "تابع YESIR DESIGN",
+    restaurants: "المطاعم: قائمة التلفاز + قائمة QR",
   },
   notFound: {
     title: "هذه الصفحة غير موجودة.",

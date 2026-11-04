@@ -20,6 +20,7 @@ const en: Dictionary = {
     language: "Language",
     mainLabel: "Main navigation",
     servicesOverview: "See all services",
+    restaurants: "Restaurants",
   },
   common: {
     startProject: "Start a project",
@@ -193,6 +194,7 @@ const en: Dictionary = {
     otherServices: "Complementary services",
     ctaTitle: "Let's talk about your project.",
     ctaLead: "Tell us what you need: we'll come back with an initial answer and the next steps.",
+    restaurantsBanner: { title: "Restaurants: animated TV menu + QR menu", cta: "See the restaurant offer" },
     categoryLabel: "Practice",
   },
   projectsPage: {
@@ -345,6 +347,7 @@ const en: Dictionary = {
     rights: "All rights reserved.",
     area: "Mascara · Oran · Algiers · across Algeria",
     followUs: "Follow YESIR DESIGN",
+    restaurants: "Restaurants: TV menu + QR menu",
   },
   notFound: {
     title: "This page doesn't exist.",

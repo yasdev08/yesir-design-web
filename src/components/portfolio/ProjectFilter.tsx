@@ -33,7 +33,7 @@ export function ProjectFilter({ label, allLabel, emptyLabel, filters, items }: P
             )}
           >
             {opt.label}
-            <span className={cn("font-mono text-xs", active === opt.id ? "text-white/70" : "text-fg-subtle")}>{opt.count}</span>
+            <span className={cn("font-mono text-xs", active === opt.id ? "text-white" : "text-fg-subtle")}>{opt.count}</span>
           </button>
         ))}
       </div>

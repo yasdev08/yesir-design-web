@@ -44,6 +44,7 @@ export const restaurantProjects: RestaurantProject[] = [
     video: "/projects/wonder-food/reel.mp4",
     poster: "/projects/wonder-food/poster.jpg",
     cover: "/projects/wonder-food/cover.jpg",
+    live: "https://wonderfood-menu.vercel.app",
   },
   {
     slug: "meat-love",

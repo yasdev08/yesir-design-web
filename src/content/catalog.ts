@@ -23,8 +23,13 @@ export const serviceSlugs = [
 export type ServiceSlug = (typeof serviceSlugs)[number];
 
 export const projectSlugs = [
+  "maison-crousty",
+  "bendenia-food",
+  "meat-love",
+  "cyno-protection-service",
+  "wonder-food",
+  "maison-mia",
   "mb-pub",
-  "menus-digitaux-restaurants",
   "signcraft-3d",
   "storeiq",
   "pharmacie-digitale",
@@ -106,16 +111,16 @@ export const categories: Category[] = [
 ];
 
 export const services: Service[] = [
-  { slug: "creation-site-web", category: "web", related: ["mb-pub", "yesir-design"] },
-  { slug: "site-e-commerce", category: "web", related: ["storeiq", "mb-pub"] },
+  { slug: "creation-site-web", category: "web", related: ["cyno-protection-service", "bendenia-food"] },
+  { slug: "site-e-commerce", category: "web", related: ["bendenia-food", "storeiq"] },
   { slug: "applications-web", category: "web", related: ["storeiq", "signcraft-3d"] },
   { slug: "enseignes-lumineuses", category: "signage", related: ["signcraft-3d", "pharmacie-digitale"] },
-  { slug: "print-supports", category: "signage", related: ["yesir-design", "menus-digitaux-restaurants"] },
-  { slug: "publicite-meta-google", category: "marketing", related: ["yesir-design", "mb-pub"] },
-  { slug: "seo-local", category: "marketing", related: ["pharmacie-digitale", "mb-pub"] },
-  { slug: "automatisation-whatsapp", category: "automation", related: ["pharmacie-digitale", "storeiq"] },
-  { slug: "menu-digital", category: "products", related: ["menus-digitaux-restaurants"] },
-  { slug: "outils-digitaux", category: "products", related: ["storeiq", "menus-digitaux-restaurants"] },
+  { slug: "print-supports", category: "signage", related: ["maison-mia", "bendenia-food"] },
+  { slug: "publicite-meta-google", category: "marketing", related: ["yesir-design", "maison-crousty"] },
+  { slug: "seo-local", category: "marketing", related: ["pharmacie-digitale", "maison-mia"] },
+  { slug: "automatisation-whatsapp", category: "automation", related: ["bendenia-food", "pharmacie-digitale"] },
+  { slug: "menu-digital", category: "products", related: ["maison-crousty", "wonder-food"] },
+  { slug: "outils-digitaux", category: "products", related: ["meat-love", "storeiq"] },
 ];
 
 /**
@@ -124,21 +129,93 @@ export const services: Service[] = [
  */
 export const projects: Project[] = [
   {
+    slug: "maison-crousty",
+    category: "products",
+    status: "completed",
+    services: ["menu-digital"],
+    cover: "menu",
+    featured: true,
+    images: [
+      { src: "/projects/maison-crousty/cover.jpg", width: 1600, height: 1000 },
+      { src: "/projects/maison-crousty/poster.jpg", width: 1600, height: 900 },
+      { src: "/projects/maison-crousty/screen-2.jpg", width: 800, height: 450 },
+      { src: "/projects/maison-crousty/screen-3.jpg", width: 800, height: 450 },
+    ],
+  },
+  {
+    slug: "bendenia-food",
+    category: "web",
+    status: "completed",
+    services: ["creation-site-web", "print-supports"],
+    cover: "web",
+    featured: true,
+    images: [
+      { src: "/projects/bendenia-food/portfolio.jpg", width: 1600, height: 1000 },
+      { src: "/projects/bendenia-food/home.jpg", width: 413, height: 893 },
+      { src: "/projects/bendenia-food/contact.jpg", width: 413, height: 893 },
+    ],
+    url: "https://bendenia-food.vercel.app",
+  },
+  {
+    slug: "meat-love",
+    category: "products",
+    status: "completed",
+    services: ["menu-digital", "creation-site-web"],
+    cover: "menu",
+    featured: true,
+    images: [
+      { src: "/projects/meat-love/portfolio.jpg", width: 1600, height: 1000 },
+      { src: "/projects/meat-love/home.jpg", width: 413, height: 893 },
+      { src: "/projects/meat-love/dish.jpg", width: 413, height: 893 },
+    ],
+    url: "https://meat-love-hazel.vercel.app",
+  },
+  {
+    slug: "cyno-protection-service",
+    category: "web",
+    status: "completed",
+    services: ["creation-site-web"],
+    cover: "web",
+    featured: true,
+    images: [
+      { src: "/projects/cyno-protection-service/portfolio.jpg", width: 1600, height: 1000 },
+      { src: "/projects/cyno-protection-service/home.jpg", width: 413, height: 893 },
+      { src: "/projects/cyno-protection-service/services.jpg", width: 413, height: 893 },
+    ],
+  },
+  {
+    slug: "wonder-food",
+    category: "products",
+    status: "completed",
+    services: ["menu-digital"],
+    cover: "menu",
+    featured: false,
+    images: [
+      { src: "/projects/wonder-food/portfolio.jpg", width: 1600, height: 1000 },
+      { src: "/projects/wonder-food/poster.jpg", width: 586, height: 1200 },
+    ],
+    url: "https://wonderfood-menu.vercel.app",
+  },
+  {
+    slug: "maison-mia",
+    category: "web",
+    status: "completed",
+    services: ["creation-site-web", "print-supports"],
+    cover: "web",
+    featured: false,
+    images: [
+      { src: "/projects/maison-mia/portfolio.jpg", width: 1600, height: 1000 },
+      { src: "/projects/maison-mia/plaque.jpg", width: 860, height: 1120 },
+    ],
+  },
+  {
+    // TODO(owner): confirm what was delivered for MB Pub and its status before featuring it.
     slug: "mb-pub",
     category: "web",
     status: "completed",
     services: ["creation-site-web", "seo-local"],
     cover: "web",
-    featured: true,
-    images: [],
-  },
-  {
-    slug: "menus-digitaux-restaurants",
-    category: "products",
-    status: "completed",
-    services: ["menu-digital", "print-supports"],
-    cover: "menu",
-    featured: true,
+    featured: false,
     images: [],
   },
   {
@@ -147,7 +224,7 @@ export const projects: Project[] = [
     status: "internal",
     services: ["applications-web", "enseignes-lumineuses"],
     cover: "editor3d",
-    featured: true,
+    featured: false,
     images: [],
   },
   {
@@ -156,7 +233,7 @@ export const projects: Project[] = [
     status: "internal",
     services: ["applications-web", "outils-digitaux"],
     cover: "pos",
-    featured: true,
+    featured: false,
     images: [],
   },
   {

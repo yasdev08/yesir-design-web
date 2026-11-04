@@ -41,7 +41,7 @@ const fr: LegalCopy = {
       },
       {
         title: "Cookies et mesure d'audience",
-        paragraphs: ["Le site utilise Vercel Web Analytics, une mesure d'audience anonyme sans cookie. Sur certaines pages de campagne (par exemple la page Restaurants), le pixel Meta (Facebook / Instagram) peut être activé : il dépose des cookies Meta et transmet à Meta des informations de navigation (pages vues, clics sur les boutons WhatsApp ou d'appel) afin de mesurer nos publicités et de proposer nos annonces aux visiteurs. Les paramètres de campagne (utm_source, utm_campaign, utm_content) sont conservés uniquement le temps de votre session dans votre navigateur. Vous pouvez refuser ou supprimer ces cookies dans les réglages de votre navigateur et gérer vos préférences publicitaires dans votre compte Meta."],
+        paragraphs: ["Le site utilise Vercel Web Analytics, une mesure d'audience anonyme sans cookie. Le site utilise également le pixel Meta (Facebook / Instagram) : il dépose des cookies Meta et transmet à Meta des informations de navigation (pages vues, clics sur les boutons WhatsApp ou d'appel) afin de mesurer nos publicités et de proposer nos annonces aux visiteurs. Les paramètres de campagne (utm_source, utm_campaign, utm_content) sont conservés uniquement le temps de votre session dans votre navigateur. Vous pouvez refuser ou supprimer ces cookies dans les réglages de votre navigateur et gérer vos préférences publicitaires dans votre compte Meta."],
       },
       {
         title: "Vos droits",

@@ -7,6 +7,7 @@ import { buildMetadata } from "@/lib/seo";
 import { organizationSchema } from "@/lib/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
+import { MetaPixel } from "@/components/analytics/MetaPixel";
 import "../globals.css";
 
 // Preloaded: main text face + the italic accent (hero headline, avoids a late reflow).
@@ -58,6 +59,7 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
         </a>
         {children}
         <Analytics />
+        <MetaPixel />
         <JsonLd data={organizationSchema(locale, t.meta.description, Object.values(c.services).map((s) => s.name))} />
       </body>
     </html>

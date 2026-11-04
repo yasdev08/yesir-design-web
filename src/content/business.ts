@@ -31,6 +31,8 @@ export const business = {
     schema: "Mo-Su 09:00-22:00",
     label: { fr: "Tous les jours, 9:00 – 22:00", en: "Every day, 9:00 – 22:00", ar: "يوميًا، 9:00 – 22:00" } satisfies L,
   },
+  /** Meta Pixel (public ID, visible in every page's source). NEXT_PUBLIC_META_PIXEL_ID overrides it. */
+  metaPixelId: "1389158877617713",
   social: {
     instagram: "https://www.instagram.com/yesirdesign31/",
     facebook: "https://www.facebook.com/profile.php?id=61574381280810",

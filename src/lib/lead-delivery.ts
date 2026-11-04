@@ -1,6 +1,10 @@
 import "server-only";
 import { createHmac } from "node:crypto";
 
+/** Reads a variable, tolerating stray spaces or quotes pasted into the Vercel dashboard. */
+const env = (name: string) => process.env[name]?.trim().replace(/^["']|["']$/g, "") || undefined;
+
+
 /**
  * Lead delivery channels, all optional and configured through server-side
  * environment variables. A submission succeeds only if at least one channel
@@ -37,9 +41,9 @@ async function ensureOk(res: Response, channel: string) {
 }
 
 function webhookChannel(): Channel | null {
-  const url = process.env.LEADS_WEBHOOK_URL;
+  const url = env("LEADS_WEBHOOK_URL");
   if (!url) return null;
-  const secret = process.env.LEADS_WEBHOOK_SECRET;
+  const secret = env("LEADS_WEBHOOK_SECRET");
   return {
     name: "webhook",
     async send(lead) {
@@ -53,10 +57,10 @@ function webhookChannel(): Channel | null {
 }
 
 function supabaseChannel(): Channel | null {
-  const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const url = env("SUPABASE_URL");
+  const key = env("SUPABASE_SERVICE_ROLE_KEY");
   if (!url || !key) return null;
-  const table = process.env.SUPABASE_LEADS_TABLE || "leads";
+  const table = env("SUPABASE_LEADS_TABLE") ?? "leads";
   return {
     name: "supabase",
     async send(lead) {
@@ -76,11 +80,14 @@ function supabaseChannel(): Channel | null {
   };
 }
 
+/** Resend's shared sender works without a verified domain (it only delivers to the Resend account's own email). */
+const DEFAULT_FROM = "YESIR DESIGN <onboarding@resend.dev>";
+
 function emailChannel(): Channel | null {
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.LEADS_EMAIL_TO;
-  const from = process.env.LEADS_EMAIL_FROM;
-  if (!apiKey || !to || !from) return null;
+  const apiKey = env("RESEND_API_KEY");
+  const to = env("LEADS_EMAIL_TO");
+  const from = env("LEADS_EMAIL_FROM") ?? DEFAULT_FROM;
+  if (!apiKey || !to) return null;
   return {
     name: "email",
     async send(lead) {
@@ -118,6 +125,17 @@ function emailChannel(): Channel | null {
       await ensureOk(res, "email");
     },
   };
+}
+
+/** Names of the variables that are missing for each channel — logged to explain an "unavailable" form. */
+export function missingConfig(): string[] {
+  const missing: string[] = [];
+  const emailVars = ["RESEND_API_KEY", "LEADS_EMAIL_TO"].filter((n) => !env(n));
+  if (emailVars.length < 2) missing.push(`email channel: missing ${emailVars.join(", ")}`);
+  const supaVars = ["SUPABASE_URL", "SUPABASE_SERVICE_ROLE_KEY"].filter((n) => !env(n));
+  if (supaVars.length < 2) missing.push(`supabase channel: missing ${supaVars.join(", ")}`);
+  if (missing.length === 0) missing.push("no channel variables found (RESEND_API_KEY + LEADS_EMAIL_TO, LEADS_WEBHOOK_URL, or SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY)");
+  return missing;
 }
 
 export function configuredChannels(): Channel[] {

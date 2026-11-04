@@ -3,7 +3,7 @@
 import { randomUUID } from "node:crypto";
 import { headers } from "next/headers";
 import { hasLocale } from "@/i18n/config";
-import { deliverLead, type LeadRecord } from "@/lib/lead-delivery";
+import { deliverLead, missingConfig, type LeadRecord } from "@/lib/lead-delivery";
 import { formFields, normalizePhone, OTHER_SERVICE, validateLead, type LeadInput, type LeadResult } from "@/lib/leads";
 
 /* ------------------------------------------------------------------------
@@ -91,7 +91,7 @@ export async function submitLead(_prev: LeadResult, formData: FormData): Promise
   try {
     const { delivered, configured } = await deliverLead(lead);
     if (configured === 0) {
-      console.error("[leads] No delivery channel configured (LEADS_WEBHOOK_URL, SUPABASE_URL/SUPABASE_SERVICE_ROLE_KEY or RESEND_API_KEY/LEADS_EMAIL_TO/LEADS_EMAIL_FROM).");
+      console.error(`[leads] No delivery channel configured — ${missingConfig().join("; ")}. Add them in Vercel (Production) and redeploy.`);
       return { status: "error", code: "unavailable" };
     }
     if (delivered === 0) return { status: "error", code: "generic" };

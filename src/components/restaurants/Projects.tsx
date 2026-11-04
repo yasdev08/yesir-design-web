@@ -16,7 +16,8 @@ export function Projects({ copy, locale }: { copy: RestaurantsCopy; locale: Loca
       <ul className="mt-10 grid gap-6 md:grid-cols-2">
         {restaurantProjects.map((project) => {
           const cover = hasPublicAsset(project.cover) ? project.cover : undefined;
-          const shots = (project.screenshots ?? []).filter((s) => hasPublicAsset(s));
+          const shots = (project.gallery?.images ?? []).filter((s) => hasPublicAsset(s));
+          const landscape = project.gallery?.aspect === "16/9";
           return (
             <li key={project.slug} className="flex flex-col overflow-hidden rounded-2xl border border-lp-line bg-lp-ink-2">
               <div className="relative aspect-[16/10] w-full">
@@ -27,10 +28,10 @@ export function Projects({ copy, locale }: { copy: RestaurantsCopy; locale: Loca
                 )}
               </div>
               {shots.length > 0 && (
-                <ul className="grid grid-cols-3 gap-2 px-4 pt-4">
+                <ul className={landscape ? "grid grid-cols-2 gap-2 px-4 pt-4" : "grid grid-cols-3 gap-2 px-4 pt-4"}>
                   {shots.map((src, i) => (
-                    <li key={src} className="relative aspect-[9/16] overflow-hidden rounded-md border border-lp-line">
-                      <Image src={src} alt={`${project.name} — ${i + 1}`} fill sizes="(min-width: 768px) 170px, 30vw" className="object-cover" />
+                    <li key={src} className={`relative overflow-hidden rounded-md border border-lp-line ${landscape ? "aspect-video" : "aspect-[9/16]"}`}>
+                      <Image src={src} alt={`${project.name} — ${i + 2}`} fill sizes={landscape ? "(min-width: 768px) 270px, 45vw" : "(min-width: 768px) 170px, 30vw"} className="object-cover" />
                     </li>
                   ))}
                 </ul>

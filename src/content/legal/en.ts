@@ -1,7 +1,7 @@
 import type { LegalCopy } from "./types";
 
 const en: LegalCopy = {
-  updated: "2026-11-01",
+  updated: "2026-11-03",
   privacy: {
     intro:
       "This policy explains what personal data {brand} collects through this website, why, how long it is kept and how to exercise your rights. It follows Algerian Law No. 18-07 of 10 June 2018 on the protection of natural persons in the processing of personal data.",
@@ -26,7 +26,7 @@ const en: LegalCopy = {
         ],
       },
       { title: "Retention", paragraphs: ["Requests that do not lead to a contract are kept for no more than 24 months after the last exchange. Data related to a contract is kept for the duration of the business relationship and then for the periods required by law."] },
-      { title: "Cookies", paragraphs: ["This website does not use advertising cookies or third-party tracking tools. Only elements strictly necessary for it to work may be used. If analytics tools are added, this policy will be updated and your consent requested where required."] },
+      { title: "Cookies and analytics", paragraphs: ["The website uses Vercel Web Analytics, an anonymous, cookie-free audience measurement. On some campaign pages (for example the Restaurants page), the Meta (Facebook / Instagram) pixel may be enabled: it sets Meta cookies and sends browsing information to Meta (pages viewed, clicks on WhatsApp or call buttons) to measure our advertising and show our ads to visitors. Campaign parameters (utm_source, utm_campaign, utm_content) are kept in your browser for your session only. You can refuse or delete these cookies in your browser settings and manage your ad preferences in your Meta account."] },
       { title: "Your rights", paragraphs: ["Under Law No. 18-07, you have the right to information, access, rectification and objection regarding the processing of your data. To exercise them, contact us through the Contact page stating your request. You may also refer the matter to the National Authority for the Protection of Personal Data (ANPDP)."] },
       { title: "Security", paragraphs: ["We apply reasonable technical and organisational measures to protect your data: encrypted connections, restricted access, server-side data validation and protection against abusive submissions."] },
       { title: "Changes", paragraphs: ["This policy may change. The date of the last update appears at the top of this page."] },

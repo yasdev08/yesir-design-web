@@ -5,17 +5,18 @@ import { localeMeta, locales } from "@/i18n/config";
 import { getContent, getDictionary, getLocale } from "@/i18n/server";
 import { buildMetadata } from "@/lib/seo";
 import { organizationSchema } from "@/lib/schema";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { MobileContactBar } from "@/components/layout/MobileContactBar";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Analytics } from "@vercel/analytics/next";
 import "../globals.css";
 
-const interTight = Inter_Tight({ subsets: ["latin", "latin-ext"], variable: "--font-inter-tight", display: "swap" });
-const instrumentSerif = Instrument_Serif({ subsets: ["latin", "latin-ext"], weight: "400", style: ["italic", "normal"], variable: "--font-instrument-serif", display: "swap" });
-const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono", display: "swap" });
-const michroma = Michroma({ subsets: ["latin"], weight: "400", variable: "--font-michroma", display: "swap" });
-const plexArabic = IBM_Plex_Sans_Arabic({ subsets: ["arabic"], weight: ["400", "500", "600"], variable: "--font-plex-arabic", display: "swap", preload: false });
+// Only the main text face is preloaded; accent/mono/logo faces load on demand (keeps LCP fast on 4G).
+const interTight = Inter_Tight({ subsets: ["latin"], variable: "--font-inter-tight", display: "swap" });
+const instrumentSerif = Instrument_Serif({ subsets: ["latin", "latin-ext"], weight: "400", style: ["italic", "normal"], variable: "--font-instrument-serif", display: "swap", preload: false });
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono", display: "swap", preload: false });
+const michroma = Michroma({ subsets: ["latin"], weight: "400", variable: "--font-michroma", display: "swap", preload: false });
+// "optional": on a slow first visit Arabic text renders immediately in the system face
+// (no late swap, no layout shift); the brand face is used once cached.
+const plexArabic = IBM_Plex_Sans_Arabic({ subsets: ["arabic"], weight: ["400", "600"], variable: "--font-plex-arabic", display: "optional", preload: false });
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -54,10 +55,8 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
         >
           {t.nav.skip}
         </a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
-        <MobileContactBar />
+        {children}
+        <Analytics />
         <JsonLd data={organizationSchema(locale, t.meta.description, Object.values(c.services).map((s) => s.name))} />
       </body>
     </html>

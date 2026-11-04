@@ -30,6 +30,17 @@
   --color-ink-text: #0a0f1c;
   --color-ink-text-muted: #4a556d;
 
+  /* Restaurant landing palette (/restaurants) */
+  --color-lp-blue: #2a4dff; /* CTA — 5.8:1 with white text */
+  --color-lp-blue-hover: #1f3ee0;
+  --color-lp-sky: #6b8bff; /* text accent on ink — 6.3:1 */
+  --color-lp-ink: #0b0b0d;
+  --color-lp-ink-2: #141418;
+  --color-lp-line: #26262d;
+  --color-lp-surface: #f6f6f8;
+  --color-lp-muted: #a1a1aa; /* on ink — 7.7:1 */
+  --color-lp-muted-dark: #52525b; /* on surface — 7.2:1 */
+
   --color-success: #3ccf91;
   --color-warning: #f2b544;
   --color-danger: #ff6b6b;

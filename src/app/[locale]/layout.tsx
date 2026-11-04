@@ -9,9 +9,10 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
 import "../globals.css";
 
-// Only the main text face is preloaded; accent/mono/logo faces load on demand (keeps LCP fast on 4G).
+// Preloaded: main text face + the italic accent (hero headline, avoids a late reflow).
+// Mono, logo and Arabic faces load on demand (keeps LCP fast on 4G).
 const interTight = Inter_Tight({ subsets: ["latin"], variable: "--font-inter-tight", display: "swap" });
-const instrumentSerif = Instrument_Serif({ subsets: ["latin", "latin-ext"], weight: "400", style: ["italic", "normal"], variable: "--font-instrument-serif", display: "swap", preload: false });
+const instrumentSerif = Instrument_Serif({ subsets: ["latin", "latin-ext"], weight: "400", style: "italic", variable: "--font-instrument-serif", display: "swap" });
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono", display: "swap", preload: false });
 const michroma = Michroma({ subsets: ["latin"], weight: "400", variable: "--font-michroma", display: "swap", preload: false });
 // "optional": on a slow first visit Arabic text renders immediately in the system face

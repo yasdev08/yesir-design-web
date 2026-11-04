@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async redirects() {
+    return [
+      { source: "/:locale(fr|ar|en)/projets/menus-digitaux-restaurants", destination: "/:locale/restaurants", permanent: true },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

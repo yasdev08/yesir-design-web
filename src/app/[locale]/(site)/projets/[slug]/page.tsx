@@ -139,10 +139,21 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
         </div>
 
         {project.images.length > 1 && (
-          <div className="container-site grid gap-6 pb-section-sm md:grid-cols-2">
-            {project.images.slice(1).map((img) => (
-              <Image key={img.src} src={img.src} alt={copy.coverAlt} width={img.width} height={img.height} className="w-full border border-line" sizes="(min-width: 768px) 50vw, 100vw" />
-            ))}
+          <div className="container-site flex flex-wrap items-start justify-center gap-6 pb-section-sm">
+            {project.images.slice(1).map((img, i) => {
+              const portrait = img.height > img.width;
+              return (
+                <Image
+                  key={img.src}
+                  src={img.src}
+                  alt={`${copy.name} — ${i + 2}`}
+                  width={img.width}
+                  height={img.height}
+                  className={portrait ? "w-[min(100%,20rem)] rounded-2xl border border-line" : "w-full border border-line md:w-[calc(50%-0.75rem)]"}
+                  sizes={portrait ? "320px" : "(min-width: 768px) 50vw, 100vw"}
+                />
+              );
+            })}
           </div>
         )}
       </article>

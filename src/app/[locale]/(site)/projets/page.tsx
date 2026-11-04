@@ -50,6 +50,7 @@ export default async function ProjectsPage() {
 
       <section className="py-section-sm" aria-label={p.eyebrow}>
         <div className="container-site">
+          <h2 className="sr-only">{p.eyebrow}</h2>
           <ProjectFilter
             label={p.filterLabel}
             allLabel={p.filterAll}

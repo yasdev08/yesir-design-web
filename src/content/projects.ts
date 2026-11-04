@@ -16,7 +16,8 @@ export interface RestaurantProject {
   video?: string;
   poster: string;
   cover: string;
-  screenshots?: string[];
+  /** Extra captures shown under the cover, with their aspect ratio. */
+  gallery?: { aspect: "16/9" | "9/16"; images: string[] };
   live?: string;
 }
 
@@ -29,6 +30,7 @@ export const restaurantProjects: RestaurantProject[] = [
     video: "/projects/maison-crousty/reel.mp4",
     poster: "/projects/maison-crousty/poster.jpg",
     cover: "/projects/maison-crousty/cover.jpg",
+    gallery: { aspect: "16/9", images: ["/projects/maison-crousty/screen-2.jpg", "/projects/maison-crousty/screen-3.jpg"] },
   },
   {
     slug: "wonder-food",
@@ -42,7 +44,6 @@ export const restaurantProjects: RestaurantProject[] = [
     video: "/projects/wonder-food/reel.mp4",
     poster: "/projects/wonder-food/poster.jpg",
     cover: "/projects/wonder-food/cover.jpg",
-    screenshots: ["/projects/wonder-food/screenshot-1.jpg", "/projects/wonder-food/screenshot-2.jpg", "/projects/wonder-food/screenshot-3.jpg"],
   },
   {
     slug: "meat-love",

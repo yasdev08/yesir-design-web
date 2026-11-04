@@ -26,6 +26,7 @@ export function restaurantsSchema(locale: Locale, copy: RestaurantsCopy, homeLab
       image: `${url}/opengraph-image`,
       logo: absoluteUrl("/icon.svg"),
       telephone: business.phone.e164,
+      sameAs: Object.values(business.social),
       address: {
         "@type": "PostalAddress",
         streetAddress: `${business.address.street}, ${business.address.district}`,

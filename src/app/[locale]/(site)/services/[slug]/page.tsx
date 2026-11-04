@@ -16,6 +16,7 @@ import { Breadcrumbs, PageHero } from "@/components/sections/PageHero";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { restaurantsCopy } from "@/content/restaurants-copy";
 
 export function generateStaticParams() {
   return serviceSlugs.map((slug) => ({ slug }));
@@ -74,6 +75,22 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
           </div>
         }
       />
+
+      {service.slug === "menu-digital" && (
+        <section aria-label={sp.restaurantsBanner.title} className="border-b border-line bg-signal/10">
+          <div className="container-site flex flex-col gap-4 py-8 md:flex-row md:items-center md:justify-between">
+            <div>
+              <p className="text-lg font-medium text-fg">{sp.restaurantsBanner.title}</p>
+              <p className="mt-1 text-fg-muted">
+                {restaurantsCopy(locale).hero.priceHint} · {restaurantsCopy(locale).hero.sub}
+              </p>
+            </div>
+            <ButtonLink href={href(routes.restaurants)} arrow className="self-start md:self-auto">
+              {sp.restaurantsBanner.cta}
+            </ButtonLink>
+          </div>
+        </section>
+      )}
 
       {/* Problems solved */}
       <Section labelledBy="problems">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { restaurantProjects } from "@/content/projects";
 import type { RestaurantsCopy } from "@/content/restaurants-copy";
 import type { Locale } from "@/i18n/config";
@@ -27,6 +28,9 @@ export function Proof({ copy, locale }: { copy: RestaurantsCopy; locale: Locale 
               <div className={cn("relative w-full", aspect)}>
                 {hasVideo ? (
                   <LazyVideo src={project.video!} poster={poster} label={`${project.name} — ${project.line[locale]}`} className="absolute inset-0 size-full object-cover" />
+                ) : poster ? (
+                  // No reel yet: show the real still so the proof is never empty.
+                  <Image src={poster} alt={`${project.name} — ${project.line[locale]}`} fill preload={slug === "maison-crousty"} sizes={slug === "wonder-food" ? "(min-width: 768px) 270px, 320px" : "(min-width: 768px) 840px, 100vw"} className="object-cover object-top" />
                 ) : (
                   <MediaPlaceholder label={copy.proof.placeholder} className="absolute inset-0" />
                 )}

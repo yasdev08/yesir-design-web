@@ -19,7 +19,7 @@ export function getChannels(t: Dictionary): Channel[] {
     out.push({
       kind: "whatsapp",
       label: t.common.whatsapp,
-      value: `+${whatsapp}`,
+      value: phone ?? `+${whatsapp}`,
       href: whatsappHref(t.common.whatsappGreeting)!,
       external: true,
     });

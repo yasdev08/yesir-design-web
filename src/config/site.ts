@@ -1,15 +1,17 @@
 /**
  * Central business configuration.
  *
- * Every contact channel is driven by environment variables so that no phone
- * number, address or account is ever hard-coded or invented. A channel that is
- * not configured is simply not rendered (no dead buttons).
+ * Contact details default to the verified facts in src/content/business.ts
+ * (phone/WhatsApp, Oran office) and can be overridden with environment
+ * variables. A channel that is not configured is simply not rendered.
  */
 
 const clean = (value: string | undefined) => {
   const v = value?.trim();
   return v ? v : undefined;
 };
+
+import { business } from "@/content/business";
 
 /**
  * Public site URL, in order of preference:
@@ -44,22 +46,22 @@ export const siteConfig = {
   legalName: clean(process.env.NEXT_PUBLIC_LEGAL_NAME) ?? "YESIR DESIGN",
   contact: {
     /** International format without "+" (e.g. 2136XXXXXXXX). */
-    whatsapp: digits(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER),
+    whatsapp: digits(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER) ?? business.phone.whatsapp,
     /** Displayed and dialled phone number, international format recommended (+213...). */
-    phone: clean(process.env.NEXT_PUBLIC_PHONE_NUMBER),
+    phone: clean(process.env.NEXT_PUBLIC_PHONE_NUMBER) ?? "+213 555 34 37 65",
     email: clean(process.env.NEXT_PUBLIC_CONTACT_EMAIL),
   },
   address: {
-    street: clean(process.env.NEXT_PUBLIC_BUSINESS_STREET),
-    city: clean(process.env.NEXT_PUBLIC_BUSINESS_CITY),
+    street: clean(process.env.NEXT_PUBLIC_BUSINESS_STREET) ?? `${business.address.street}, ${business.address.district}`,
+    city: clean(process.env.NEXT_PUBLIC_BUSINESS_CITY) ?? business.address.city,
     postalCode: clean(process.env.NEXT_PUBLIC_BUSINESS_POSTAL_CODE),
     region: clean(process.env.NEXT_PUBLIC_BUSINESS_REGION),
   },
   social: {
-    instagram: clean(process.env.NEXT_PUBLIC_INSTAGRAM_URL),
-    facebook: clean(process.env.NEXT_PUBLIC_FACEBOOK_URL),
+    instagram: clean(process.env.NEXT_PUBLIC_INSTAGRAM_URL) ?? business.social.instagram,
+    facebook: clean(process.env.NEXT_PUBLIC_FACEBOOK_URL) ?? business.social.facebook,
     linkedin: clean(process.env.NEXT_PUBLIC_LINKEDIN_URL),
-    tiktok: clean(process.env.NEXT_PUBLIC_TIKTOK_URL),
+    tiktok: clean(process.env.NEXT_PUBLIC_TIKTOK_URL) ?? business.social.tiktok,
   },
   /** Cities the agency serves (service area — not office locations). */
   serviceArea: ["Mascara", "Oran", "Alger"],

@@ -41,6 +41,19 @@ export default async function LandingLayout({ children }: LayoutProps<"/[locale]
             <li><Link href={localePath(locale, "/")} prefetch={false} className="inline-flex min-h-11 items-center hover:text-white">{t.nav.home}</Link></li>
             <li><Link href={localePath(locale, routes.privacy)} prefetch={false} className="inline-flex min-h-11 items-center hover:text-white">{t.footer.privacy}</Link></li>
             <li><Link href={localePath(locale, routes.terms)} prefetch={false} className="inline-flex min-h-11 items-center hover:text-white">{t.footer.terms}</Link></li>
+            {(
+              [
+                ["Instagram", business.social.instagram],
+                ["Facebook", business.social.facebook],
+                ["TikTok", business.social.tiktok],
+              ] as const
+            ).map(([label, url]) => (
+              <li key={label}>
+                <a href={url} target="_blank" rel="noopener noreferrer me" className="inline-flex min-h-11 items-center hover:text-white">
+                  {label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </footer>

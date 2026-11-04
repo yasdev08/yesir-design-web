@@ -22,6 +22,7 @@ const fr = {
     language: "Langue",
     mainLabel: "Navigation principale",
     servicesOverview: "Voir tous les services",
+    restaurants: "Restaurants",
   },
   common: {
     startProject: "Démarrer un projet",
@@ -195,6 +196,7 @@ const fr = {
     otherServices: "Services complémentaires",
     ctaTitle: "Parlons de votre projet.",
     ctaLead: "Décrivez votre besoin : nous revenons vers vous avec une première réponse et les prochaines étapes.",
+    restaurantsBanner: { title: "Restaurants : menu TV animé + menu QR", cta: "Voir l'offre restaurants" },
     categoryLabel: "Pôle",
   },
   projectsPage: {
@@ -348,6 +350,7 @@ const fr = {
     rights: "Tous droits réservés.",
     area: "Mascara · Oran · Alger · partout en Algérie",
     followUs: "Suivre YESIR DESIGN",
+    restaurants: "Restaurants : menu TV + menu QR",
   },
   notFound: {
     title: "Cette page n'existe pas.",

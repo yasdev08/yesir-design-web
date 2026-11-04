@@ -31,6 +31,11 @@ export const business = {
     schema: "Mo-Su 09:00-22:00",
     label: { fr: "Tous les jours, 9:00 – 22:00", en: "Every day, 9:00 – 22:00", ar: "يوميًا، 9:00 – 22:00" } satisfies L,
   },
+  social: {
+    instagram: "https://www.instagram.com/yesirdesign31/",
+    facebook: "https://www.facebook.com/profile.php?id=61574381280810",
+    tiktok: "https://www.tiktok.com/@yesirdesign",
+  },
   serviceArea: {
     label: {
       fr: "Oran + toute l'Algérie (menu QR livré à distance)",

@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { digitalPresence, formatDA, qrOnly } from "@/content/pricing";
+import { digitalPresence, express, formatDA, qrOnly } from "@/content/pricing";
 import type { RestaurantsCopy } from "@/content/restaurants-copy";
 import type { Locale } from "@/i18n/config";
 import { cn } from "@/lib/cn";
@@ -73,6 +73,18 @@ export function Pricing({ copy, locale }: { copy: RestaurantsCopy; locale: Local
             <p className="mt-1 text-sm text-lp-muted-dark">{p.monthlyIncludes}</p>
             <p className="mt-4 font-medium">{p.payment}</p>
           </div>
+        </div>
+        <div className="mt-4 flex flex-col gap-4 rounded-2xl border border-dashed border-lp-blue/50 bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-lg font-semibold">{p.expressTitle}</p>
+            <p className="mt-1 text-sm text-lp-muted-dark">{p.expressSub}</p>
+          </div>
+          <a
+            href={express.url}
+            className="inline-flex shrink-0 items-center justify-center rounded-full border border-lp-blue px-5 py-2.5 text-sm font-semibold text-lp-blue hover:bg-lp-blue hover:text-white"
+          >
+            {p.expressCta}
+          </a>
         </div>
         <ul className="mt-6 space-y-1 text-sm text-lp-muted-dark">
           <li>{p.tvNote}</li>

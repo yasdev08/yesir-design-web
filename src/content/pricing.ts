@@ -30,6 +30,14 @@ export const qrOnly = {
   ],
 };
 
+/** Entry offer: ready-made template in the client's colours + 1 printed plexi stand. Ordered on the express page. */
+export const express = {
+  url: "https://yesir-led-sign.vercel.app/qr",
+  menu: 9900,
+  rdv: 7900,
+  extraStand: 2500,
+};
+
 export const monthlyPlan = {
   price: 3000,
   includes: { fr: "hébergement + mises à jour de prix", en: "hosting + price updates", ar: "الاستضافة + تحديث الأسعار" } satisfies L,

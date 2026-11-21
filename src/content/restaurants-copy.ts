@@ -1,6 +1,6 @@
 import type { Locale } from "@/i18n/config";
 import { business } from "./business";
-import { formatDA, monthlyPlan, payment, qrOnly, digitalPresence } from "./pricing";
+import { formatDA, monthlyPlan, payment, qrOnly, digitalPresence, express } from "./pricing";
 
 /**
  * Wording of the /restaurants landing page. Prices, delays and contact details
@@ -14,6 +14,9 @@ export function restaurantsCopy(locale: Locale) {
   const packFrom = da(digitalPresence.packs[0].price);
   const qrFrom = da(qrOnly.from);
   const monthly = da(monthlyPlan.price);
+  const exMenu = da(express.menu);
+  const exRdv = da(express.rdv);
+  const exStand = da(express.extraStand);
 
   const copy = {
     fr: {
@@ -42,7 +45,10 @@ export function restaurantsCopy(locale: Locale) {
         video4k: "Vidéos livrées en 4K",
         recommended: "RECOMMANDÉ",
         cta: (name: string) => `Choisir ${name}`,
-        qrOnlyLine: `Menu QR seul dès ${qrFrom}`,
+        qrOnlyLine: `Menu QR sur mesure dès ${qrFrom}`,
+        expressTitle: "Petit budget ? Pack Express",
+        expressSub: `Modèle prêt à vos couleurs + 1 présentoir plexi A4 imprimé. Menu QR ${exMenu} · Page rendez-vous ${exRdv} · présentoir en plus ${exStand}. Paiement à la livraison.`,
+        expressCta: "Commander le Pack Express",
         monthly: `Forfait mensuel : ${monthly} / mois`,
         monthlyIncludes: monthlyPlan.includes.fr,
         payment: `Paiement : ${payment.label.fr}`,
@@ -116,7 +122,10 @@ export function restaurantsCopy(locale: Locale) {
         video4k: "Videos delivered in 4K",
         recommended: "RECOMMENDED",
         cta: (name: string) => `Choose ${name}`,
-        qrOnlyLine: `QR menu only, from ${qrFrom}`,
+        qrOnlyLine: `Custom QR menu, from ${qrFrom}`,
+        expressTitle: "Small budget? Express pack",
+        expressSub: `Ready-made template in your colours + 1 printed A4 plexi stand. QR menu ${exMenu} · Booking page ${exRdv} · extra stand ${exStand}. Cash on delivery.`,
+        expressCta: "Order the Express pack",
         monthly: `Monthly plan: ${monthly} / month`,
         monthlyIncludes: monthlyPlan.includes.en,
         payment: `Payment: ${payment.label.en}`,
@@ -185,7 +194,10 @@ export function restaurantsCopy(locale: Locale) {
         video4k: "فيديوهات بدقّة 4K",
         recommended: "الأنسب",
         cta: (name: string) => `اختر ${name}`,
-        qrOnlyLine: `قائمة QR وحدها ابتداءً من ${qrFrom}`,
+        qrOnlyLine: `قائمة QR مخصصة ابتداءً من ${qrFrom}`,
+        expressTitle: "ميزانية صغيرة؟ باقة Express",
+        expressSub: `نموذج جاهز بألوانك + حامل بلكسي A4 مطبوع. قائمة QR ${exMenu} · صفحة المواعيد ${exRdv} · حامل إضافي ${exStand}. الدفع عند الاستلام.`,
+        expressCta: "اطلب باقة Express",
         monthly: `الاشتراك الشهري: ${monthly} / شهر`,
         monthlyIncludes: monthlyPlan.includes.ar,
         payment: `الدفع: ${payment.label.ar}`,

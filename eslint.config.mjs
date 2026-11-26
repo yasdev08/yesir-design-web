@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Print production files and their generator scripts (not part of the website).
+    "print/**",
   ]),
 ]);
 

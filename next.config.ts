@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
       { source: "/:locale(fr|ar|en)/projets/menus-digitaux-restaurants", destination: "/:locale/restaurants", permanent: true },
       // Short link printed on QR codes (plexi plate, stickers…). Temporary on purpose:
       // the destination can change later without reprinting anything.
-      { source: "/qr", destination: "/fr/restaurants?utm_source=qr&utm_medium=print&utm_campaign=plexi", permanent: false },
+      { source: "/qr", destination: "/fr?utm_source=qr&utm_medium=print&utm_campaign=plexi", permanent: false },
     ];
   },
   async headers() {

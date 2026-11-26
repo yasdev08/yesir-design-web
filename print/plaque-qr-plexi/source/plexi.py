@@ -140,12 +140,13 @@ def build(variant):
     for d in lk["main"]: add(d, main_col)
 
     # eyebrow
-    d, _ = text_path(F["mono"], "MENU TV · MENU QR · ORAN", 3.3, W / 2, 43.5, tracking=0.55)
+    d, _ = text_path(F["mono"], "SITES WEB · MENUS QR · ÉCRANS TV · ENSEIGNES", 3.0, W / 2, 43.5, tracking=0.32)
     add(d, accent)
+    assert _ < W - 2 * 12, "services line too wide"
     # headline
-    d, _ = text_path(F["bold"], "Votre menu,", 11.5, W / 2, 58.5, tracking=-0.25)
+    d, _ = text_path(F["bold"], "Du pixel", 12.5, W / 2, 59.0, tracking=-0.3)
     add(d, main_col)
-    d, _ = text_path(F["bold"], "en un scan.", 11.5, W / 2, 71.0, tracking=-0.25)
+    d, _ = text_path(F["bold"], "à la façade.", 12.5, W / 2, 72.0, tracking=-0.3)
     add(d, accent)
 
     # QR tile (white ink, always — dark modules on white = reliable scan on any wall)
@@ -163,9 +164,9 @@ def build(variant):
     brackets = [bracket(bx0, by0, 1, 1), bracket(bx1, by0, -1, 1), bracket(bx0, by1, 1, -1), bracket(bx1, by1, -1, -1)]
 
     # call to action FR + AR
-    d, _ = text_path(F["medium"], "Scannez pour voir nos offres", 4.6, W / 2, ty + tile + g + 9.0)
+    d, _ = text_path(F["medium"], "Scannez pour découvrir l'agence", 4.6, W / 2, ty + tile + g + 9.0)
     add(d, main_col)
-    d, _ = text_path(F["arabic"], "امسح الرمز لاكتشاف عروضنا", 4.4, W / 2, ty + tile + g + 16.2, rtl=True)
+    d, _ = text_path(F["arabic"], "امسح الرمز لاكتشاف وكالتنا", 4.4, W / 2, ty + tile + g + 16.2, rtl=True)
     add(d, sub_col)
     # footer (between the bottom standoffs)
     d, fw = text_path(F["mono"], "WHATSAPP 0555 34 37 65  ·  @YESIRDESIGN31", 2.9, W / 2, 192.0, tracking=0.2)

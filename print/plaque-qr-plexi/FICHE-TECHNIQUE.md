@@ -1,10 +1,11 @@
 # Plaque QR — plexiglas transparent · YESIR DESIGN
 
+Plaque de présentation de l'agence (« Du pixel à la façade »).
 Fiche à transmettre à l'atelier d'impression / découpe.
 
 ## Le QR code
 - Lien encodé : `https://yesir-design-web.vercel.app/qr`
-- Ce lien redirige vers la page Restaurants du site, avec le suivi `utm_source=qr · utm_medium=print · utm_campaign=plexi`
+- Ce lien redirige vers la page d'accueil du site (présentation de toute l'agence), avec le suivi `utm_source=qr · utm_medium=print · utm_campaign=plexi`
   (les scans de la plaque sont donc identifiables dans les statistiques).
 - La destination peut être changée **sans réimprimer** la plaque (redirection `/qr` dans `next.config.ts`).
 - QR version 4, correction d'erreur **Q** (≈ 25 %), 33 × 33 modules, module de 2 mm, QR de 66 mm.
@@ -48,6 +49,6 @@ Pour une impression **verso** (au dos, vue à travers le plexi), l'atelier doit 
 | `qr-seul_…` | Le QR seul (SVG + PNG) pour stickers, cartes, flyers |
 
 ## Avant de lancer la série
-1. Vérifier que `https://yesir-design-web.vercel.app/qr` ouvre bien la page Restaurants (après le déploiement Vercel).
+1. Vérifier que `https://yesir-design-web.vercel.app/qr` ouvre bien la page d'accueil du site (après le déploiement Vercel).
 2. Demander un **BAT** (épreuve) ou une pièce test, et la scanner avec un iPhone **et** un Android, de face et de biais.
 3. Contrôler sur place : pas de reflet direct d'un spot sur le QR (sinon incliner ou déplacer la plaque).
